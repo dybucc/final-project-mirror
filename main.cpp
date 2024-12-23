@@ -1,5 +1,7 @@
 #include <iostream>
 #include <fstream>
+#include <ctime>
+#include <cstdlib>
 
 using namespace std;
 
@@ -25,12 +27,6 @@ struct Estado
     bool bandera;
 };
 
-struct Posicion
-{
-    unsigned short fil[2];
-    unsigned short col[2];
-};
-
 const unsigned short MAX_MINAS = 8;
 const unsigned short MAX_JUGADORES = 100;
 const unsigned short FIL = 8;
@@ -38,10 +34,17 @@ const unsigned short COL = 8;
 typedef Jugador VectorJ[MAX_JUGADORES];
 typedef Estado Tablero[FIL][COL];
 
+struct Posicion
+{
+    unsigned short fil[FIL];
+    unsigned short col[COL];
+};
+
 char Menu();
 void InicializarDesdeFichero(Tablero, ifstream &);
 unsigned short NumeroMinasVecinas(const Tablero, unsigned short,
                                   unsigned short);
+void InicializaAleatoriamente(Tablero);
 
 int main(void)
 {
@@ -138,4 +141,39 @@ unsigned short NumeroMinasVecinas(const Tablero tablero,
                 minas++;
 
     return minas;
+}
+
+void InicializaAleatoriamente(Tablero tablero)
+{
+    srand(time(NULL));
+
+    unsigned short num_minas = rand() & MAX_MINAS + 1;
+    Posicion minas_pos;
+
+    for (int i = 0; i < FIL; i++)
+    {
+        minas_pos.fil[i] = 0;
+        minas_pos.col[i] = 0;
+    }
+
+    for (int i = 0; i < num_minas; i++)
+    {
+        minas_pos.fil[rand() & MAX_MINAS + 1] = 1;
+        minas_pos.col[rand() & MAX_MINAS + 1] = 1;
+    }
+
+    for (int i = 0; i < FIL; i++)
+        for (int j = 0; j < COL; j++)
+        {
+            if (minas_pos.fil[i] == 1 && minas_pos.col[j] == 1)
+                tablero[i][j].mina = true;
+            else
+                tablero[i][j].mina = false;
+
+            tablero[i][j].n_minas = 0;
+            tablero[i][j].bandera = false;
+            tablero[i][j].destapada = false;
+        }
+
+    return;
 }
