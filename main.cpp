@@ -33,6 +33,7 @@ typedef Jugador VectorJ[MAX_JUGADORES];
 typedef Estado Tablero[FIL][COL];
 
 char Menu();
+void InicializarDesdeFichero(Tablero, ifstream &);
 
 int main(void)
 {
@@ -65,4 +66,23 @@ char Menu()
     while (opcion < 'a' || opcion > 'e');
 
     return opcion;
+}
+
+void InicializarDesdeFichero(Tablero tablero, ifstream & f)
+{
+    string linea;
+
+    for (int i = 0; i < FIL; i++)
+        for (int j = 0; j < COL; j++)
+        {
+            tablero[i][j].mina = false;
+            tablero[i][j].n_minas = 0;
+            tablero[i][j].bandera = false;
+            tablero[i][j].destapada = false;
+        }
+
+    while (getline(f, linea))
+        tablero[linea[0]][linea[2]].mina = true;
+
+    return;
 }
