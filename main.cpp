@@ -45,6 +45,7 @@ void InicializarDesdeFichero(Tablero, ifstream &);
 unsigned short NumeroMinasVecinas(const Tablero, unsigned short,
                                   unsigned short);
 void InicializaAleatoriamente(Tablero);
+void MuestraTablero(const Tablero);
 
 int main(void)
 {
@@ -174,6 +175,42 @@ void InicializaAleatoriamente(Tablero tablero)
             tablero[i][j].bandera = false;
             tablero[i][j].destapada = false;
         }
+
+    return;
+}
+
+void MuestraTablero(const Tablero tablero)
+{
+    for (int i = 0; i <= FIL; i++)
+    {
+        for (int j = 0; j <= COL; j++)
+        {
+            if (i == 0 || i == FIL)
+                cout << '-';
+            else
+            {
+                if (j == 0)
+                    cout << "| ";
+
+                if (tablero[i][j].destapada == true)
+                {
+                    if (tablero[i][j].n_minas > 0)
+                        cout << tablero[i][j].n_minas;
+                    else if (tablero[i][j].mina == true)
+                        cout << '#';
+                    else if (tablero[i][j].n_minas < 1 &&
+                             tablero[i][j].mina == false)
+                        cout << ' ';
+                }
+                else
+                    cout << '.';
+
+                cout << " |";
+            }
+        }
+
+        cout << endl;
+    }
 
     return;
 }
