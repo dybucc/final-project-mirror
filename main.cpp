@@ -48,6 +48,9 @@ void InicializaAleatoriamente(Tablero);
 void MuestraTablero(const Tablero);
 void LeeCelda(unsigned short &, unsigned short &);
 void AbreCelda(Tablero, unsigned short, unsigned short);
+bool FinJuego(const Tablero);
+bool MinaAbierta(const Tablero);
+bool TodasCeldasProcesadas(const Tablero);
 
 int main(void)
 {
@@ -277,4 +280,49 @@ void AbreCelda(Tablero tablero, unsigned short fil, unsigned short col)
     }
     
     return;
+}
+
+bool FinJuego(const Tablero tablero)
+{
+    bool mina = false,
+         proc = false,
+         fin = false;
+
+    mina = MinaAbierta(tablero);
+    proc = TodasCeldasProcesadas(tablero);
+
+    if (mina || proc)
+        fin = true;
+
+    return fin;
+}
+
+bool MinaAbierta(const Tablero tablero)
+{
+    bool abierta = false;
+
+    for (int i = 0; i < FIL; i++)
+        for (int j = 0; j < COL; j++)
+            if (tablero[i][j].mina == true &&
+                tablero[i][j].destapada == true)
+                abierta = true;
+
+    return abierta;
+}
+
+bool TodasCeldasProcesadas(const Tablero tablero)
+{
+    bool procesadas = false;
+    unsigned short num_procesadas;
+
+    for (int i = 0; i < FIL; i++)
+        for (int j = 0; j < COL; j++)
+            if (tablero[i][j].destapada == true ||
+                tablero[i][j].bandera == true)
+                num_procesadas++;
+
+    if (num_procesadas == FIL * COL)
+        procesadas = true;
+
+    return procesadas;
 }
