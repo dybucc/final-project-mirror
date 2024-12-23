@@ -46,6 +46,7 @@ unsigned short NumeroMinasVecinas(const Tablero, unsigned short,
                                   unsigned short);
 void InicializaAleatoriamente(Tablero);
 void MuestraTablero(const Tablero);
+void LeeCelda(unsigned short &, unsigned short &);
 
 int main(void)
 {
@@ -211,6 +212,23 @@ void MuestraTablero(const Tablero tablero)
 
         cout << endl;
     }
+
+    return;
+}
+
+void LeeCelda(unsigned short & fil, unsigned short & col)
+{
+    do
+    {
+        cout << "Introduzca el numero de fila:" << endl;
+        cout << "> ";
+        cin >> fil;
+
+        cout << "Introduzca el numero de columna:" << endl;
+        cout << "> ";
+        cin >> col;
+    }
+    while (fil < 1 || fil > 8 || col < 1 || col > 8);
 
     return;
 }
