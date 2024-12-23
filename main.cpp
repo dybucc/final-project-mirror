@@ -51,6 +51,7 @@ void AbreCelda(Tablero, unsigned short, unsigned short);
 bool FinJuego(const Tablero);
 bool MinaAbierta(const Tablero);
 bool TodasCeldasProcesadas(const Tablero);
+void LeeJugadoresFichero(VectorJ, unsigned short &, ifstream &);
 
 int main(void)
 {
@@ -325,4 +326,46 @@ bool TodasCeldasProcesadas(const Tablero tablero)
         procesadas = true;
 
     return procesadas;
+}
+
+void LeeJugadoresFichero(VectorJ jugadores, unsigned short & tam,
+                         ifstream & f)
+{
+    string linea;
+
+    while (getline(f, linea))
+    {
+        if (linea[0] > 'a' && linea[0] < 'z')
+            jugadores[tam].nombre = linea.erase(linea.find('\n'));
+        else if (linea.find(' ') != linea.npos)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        jugadores[tam].nacimiento.dia =
+                            stoi(linea.substr(0, linea.find(' ')));
+                        break;
+                    case 1:
+                        jugadores[tam].nacimiento.mes =
+                            stoi(linea.substr(0, linea.find(' ')));
+                        break;
+                    case 2:
+                        jugadores[tam].nacimiento.anyo =
+                            stoi(linea.substr(0, linea.find('\n')));
+                }
+
+                if (linea.find(' ') != linea.npos)
+                    linea.erase(0, linea.find(' '));
+            }
+        }
+        else
+        {
+            jugadores[tam].partidas = stoi(linea.erase('\n'));
+            tam++;
+        }
+    }
+
+    return;
 }
