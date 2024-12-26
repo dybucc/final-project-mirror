@@ -53,6 +53,7 @@ bool MinaAbierta(const Tablero);
 bool TodasCeldasProcesadas(const Tablero);
 void LeeJugadoresFichero(VectorJ, unsigned short &, ifstream &);
 Jugador LeeInfoJugador(unsigned int);
+bool InsertaJugadorVector(Jugador, VectorJ, unsigned int &);
 
 int main(void)
 {
@@ -409,4 +410,23 @@ Jugador LeeInfoJugador(unsigned int intentos)
     }
 
     return jug;
+}
+
+bool InsertaJugadorVector(Jugador jug, VectorJ jugadores,
+                          unsigned int & tam)
+{
+    bool mem = false;
+
+    if (tam < MAX_JUGADORES)
+    {
+        mem = true;
+
+        jugadores[tam].nombre = jug.nombre;
+        jugadores[tam].partidas = jug.partidas;
+        jugadores[tam].nacimiento = jug.nacimiento;
+
+        tam++;
+    }
+
+    return mem;
 }
