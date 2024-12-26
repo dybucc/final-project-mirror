@@ -52,6 +52,7 @@ bool FinJuego(const Tablero);
 bool MinaAbierta(const Tablero);
 bool TodasCeldasProcesadas(const Tablero);
 void LeeJugadoresFichero(VectorJ, unsigned short &, ifstream &);
+Jugador LeeInfoJugador(unsigned int);
 
 int main(void)
 {
@@ -368,4 +369,44 @@ void LeeJugadoresFichero(VectorJ jugadores, unsigned short & tam,
     }
 
     return;
+}
+
+Jugador LeeInfoJugador(unsigned int intentos)
+{
+    Jugador jug = { "", 0, 0, 0, intentos };
+
+    cin.ignore();
+
+    for (int i = 0; i < 2; i++)
+    {
+        cout << "Introduzca ";
+
+        switch (i)
+        {
+            case 0:
+                cout << "el nombre del jugador: ";
+                getline(cin, jug.nombre);
+                break;
+            case 1:
+                cout << "la fecha de nacimiento del jugador:" << endl;
+
+                for (int j = 1; j < 3; j++)
+                    switch (j)
+                    {
+                        case 0:
+                            cout << "Mes: ";
+                            cin >> jug.nacimiento.mes;
+                            break;
+                        case 1:
+                            cout << "Dia: ";
+                            cin >> jug.nacimiento.dia;
+                            break;
+                        case 2:
+                            cout << "Anyo: ";
+                            cin >> jug.nacimiento.anyo;
+                    }
+        }
+    }
+
+    return jug;
 }
