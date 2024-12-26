@@ -54,6 +54,7 @@ bool TodasCeldasProcesadas(const Tablero);
 void LeeJugadoresFichero(VectorJ, unsigned short &, ifstream &);
 Jugador LeeInfoJugador(unsigned int);
 bool InsertaJugadorVector(Jugador, VectorJ, unsigned int &);
+void EscribeJugadoresFichero(const VectorJ, unsigned int, ofstream &);
 
 int main(void)
 {
@@ -429,4 +430,21 @@ bool InsertaJugadorVector(Jugador jug, VectorJ jugadores,
     }
 
     return mem;
+}
+
+void EscribeJugadoresFichero(const VectorJ jugadores, unsigned int tam,
+                             ofstream & f)
+{
+    for (int i = 0; i < tam; i++)
+    {
+        f << jugadores[i].nombre << endl;
+
+        f << jugadores[i].nacimiento.dia << endl;
+        f << jugadores[i].nacimiento.mes << endl;
+        f << jugadores[i].nacimiento.anyo << endl;
+
+        f << jugadores[i].partidas << endl;
+    }
+
+    return;
 }
