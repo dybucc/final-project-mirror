@@ -6,6 +6,12 @@
 
 using namespace std;
 
+#ifdef _WIN32
+    string limpiar = "cls";
+#else
+    string limpiar = "clear";
+#endif
+
 struct Fecha
 {
     unsigned short mes;
@@ -68,6 +74,8 @@ int main(void)
     ifstream f_in;
     Tablero tablero;
 
+    system(limpiar.c_str());
+
     do
     {
         opcion = Menu();
@@ -115,6 +123,8 @@ int main(void)
                 LeeCelda(fil, col);
                 tablero[fil][col].bandera = false;
         }
+
+        system(limpiar.c_str());
 
         MuestraTablero(tablero);
 
