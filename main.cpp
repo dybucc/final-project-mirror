@@ -254,7 +254,7 @@ unsigned short NumeroMinasVecinas(const Tablero tablero,
             pos.fil[0] = fil;
             pos.fil[1] = fil + 1;
             break;
-        case FIL:
+        case FIL - 1:
             pos.fil[0] = fil - 1;
             pos.fil[1] = fil;
             break;
@@ -269,7 +269,7 @@ unsigned short NumeroMinasVecinas(const Tablero tablero,
             pos.col[0] = col;
             pos.col[1] = col + 1;
             break;
-        case COL:
+        case COL - 1:
             pos.col[0] = col - 1;
             pos.col[1] = col;
             break;
@@ -370,6 +370,9 @@ void LeeCelda(unsigned short & fil, unsigned short & col)
         cin >> col;
     }
     while (fil < 1 || fil > 8 || col < 1 || col > 8);
+
+    fil--;
+    col--;
 
     return;
 }
