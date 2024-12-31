@@ -132,6 +132,14 @@ int main(void)
     }
     while (!FinJuego(tablero));
 
+    if (MinaAbierta(tablero))
+        cout << "Se ha encontrado una mina. Fin del juego" << endl;
+    else
+        cout << "Se han marcado todas las minas. Se ha ganado el juego."
+            << endl;
+
+    cout << "Se ha(n) realizado " << intentos << " intento(s)." << endl;
+
     return 0;
 }
 
