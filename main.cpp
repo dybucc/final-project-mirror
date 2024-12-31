@@ -323,36 +323,80 @@ void InicializaAleatoriamente(Tablero tablero)
 
 void MuestraTablero(const Tablero tablero)
 {
+    unsigned short esp_fil = to_string(FIL).length();
+    unsigned short esp_col = to_string(COL).length();
+
     for (int i = 0; i <= FIL; i++)
     {
-        for (int j = 0; j <= COL; j++)
+        if (i == 0)
         {
-            if (i == 0 || i == FIL)
-                cout << '-';
-            else
+            for (int j = 1; j <= COL; j++)
             {
-                if (j == 0)
-                    cout << "| ";
-
-                if (tablero[i][j].destapada == true)
+                if (j == 1)
                 {
-                    if (tablero[i][j].n_minas > 0)
-                        cout << tablero[i][j].n_minas;
-                    else if (tablero[i][j].mina == true)
-                        cout << '#';
-                    else if (tablero[i][j].n_minas < 1 &&
-                             tablero[i][j].mina == false)
+                    cout << "    ";
+
+                    for (int k = 0; k < esp_fil; k++)
                         cout << ' ';
                 }
+
+                cout << j << "   ";
+            }
+
+            cout << endl;
+        }
+        else
+        {
+            cout << "  ";
+
+            for (int j = 0; j < esp_fil; j++)
+                cout << ' ';
+
+            for (int j = 0; j <= FIL * (3 + esp_col); j++)
+                cout << '-';
+
+            cout << endl;
+
+            cout << ' ' << i;
+
+            for (int j = 0; j < esp_fil; j++)
+                cout << ' ';
+
+            for (int j = 0; j < COL; j++)
+            {
+                cout << "| ";
+
+                if (tablero[i - 1][j].destapada)
+                {
+                    if (tablero[i - 1][j].mina)
+                        cout << '#';
+                    else if (tablero[i - 1][j].n_minas > 0)
+                        cout << tablero[i - 1][j].n_minas;
+                    else
+                        cout << ' ';
+                }
+                else if (tablero[i - 1][j].bandera)
+                    cout << '^';
                 else
                     cout << '.';
 
-                cout << " |";
+                for (int k = 0; k < esp_col; k++)
+                    cout << ' ';
             }
-        }
 
-        cout << endl;
+            cout << '|' << endl;
+        }
     }
+
+    cout << "  ";
+
+    for (int i = 0; i < esp_fil; i++)
+        cout << ' ';
+
+    for (int i = 0; i <= FIL * (3 + esp_col); i++)
+        cout << '-';
+
+    cout << endl;
 
     return;
 }
