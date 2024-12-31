@@ -59,7 +59,68 @@ void EscribeJugadoresFichero(const VectorJ, unsigned short, ofstream &);
 
 int main(void)
 {
+    char opcion = 'a';
+    unsigned short fil,
+                   col,
+                   tam = 0;
+    unsigned int intentos = 0;
+    string f_nom;
+    ifstream f_in;
+    Tablero tablero;
 
+    do
+    {
+        opcion = Menu();
+
+        cout << endl;
+
+        switch (opcion)
+        {
+            case 'a':
+                cout << "Introduzca el nombre del archivo con las "
+                    "posiciones de las minas: ";
+                cin >> f_nom;
+
+                f_in.open(f_nom);
+
+                if (!f_in)
+                    cout << "Ha habido un error abriendo el archivo."
+                        << endl;
+                else
+                {
+                    InicializarDesdeFichero(tablero, f_in);
+
+                    f_in.close();
+                }
+
+                break;
+            case 'b':
+                InicializaAleatoriamente(tablero);
+
+                break;
+            case 'c':
+                LeeCelda(fil, col);
+                if (!tablero[fil][col].destapada)
+                    AbreCelda(tablero, fil, col);
+
+                intentos++;
+
+                break;
+            case 'd':
+                LeeCelda(fil, col);
+                tablero[fil][col].bandera = true;
+
+                break;
+            case 'e':
+                LeeCelda(fil, col);
+                tablero[fil][col].bandera = false;
+        }
+
+        MuestraTablero(tablero);
+
+        cout << endl;
+    }
+    while (!FinJuego(tablero));
 
     return 0;
 }
