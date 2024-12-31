@@ -323,8 +323,8 @@ void InicializaAleatoriamente(Tablero tablero)
 
 void MuestraTablero(const Tablero tablero)
 {
-    unsigned short esp_fil = to_string(FIL).length();
-    unsigned short esp_col = to_string(COL).length();
+    unsigned short esp_fil = to_string(FIL).length(),
+                   esp_col = to_string(COL).length();
 
     for (int i = 0; i <= FIL; i++)
     {
