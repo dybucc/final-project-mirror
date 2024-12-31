@@ -280,7 +280,7 @@ unsigned short NumeroMinasVecinas(const Tablero tablero,
 
     for (int i = pos.fil[0]; i <= pos.fil[1]; i++)
         for (int j = pos.col[0]; j <= pos.col[1]; j++)
-            if (tablero[i][j].mina == true)
+            if (tablero[i][j].mina && (i != fil || j != col))
                 minas++;
 
     return minas;
