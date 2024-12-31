@@ -236,7 +236,7 @@ void InicializarDesdeFichero(Tablero tablero, ifstream & f)
         }
 
     while (getline(f, linea))
-        tablero[linea[0]][linea[2]].mina = true;
+        tablero[linea[0] - '0'][linea[2] - '0'].mina = true;
 
     return;
 }
