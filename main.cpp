@@ -209,7 +209,7 @@ char Menu()
             << endl;
         cout << "b. Genera aleatoriamente las posiciones de las minas."
             << endl;
-        cout << "c. Descube celda." << endl;
+        cout << "c. Descubre celda." << endl;
         cout << "d. Marca celda como una mina. Anade una bandera."
             << endl;
         cout << "e. Desmarca celda como una mina." << endl << endl;
