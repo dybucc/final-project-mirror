@@ -72,6 +72,9 @@ int main(void)
     unsigned int intentos = 0;
     string f_nom;
     ifstream f_in;
+    ofstream f_out;
+    Jugador jug;
+    VectorJ jugadores;
     Tablero tablero;
 
     system(limpiar.c_str());
@@ -139,6 +142,56 @@ int main(void)
             << endl;
 
     cout << "Se ha(n) realizado " << intentos << " intento(s)." << endl;
+
+    if (TodasCeldasProcesadas(tablero))
+    {
+        cout << endl;
+        cout << "Se han procesado todas las celdas. Se procedera al "
+            "guardado en un archivo existente." << endl << endl;
+
+        cout << "Introduzca el nombre del archivo en que hay jugadores "
+            "guardados: ";
+        cin >> f_nom;
+
+        f_in.open(f_nom);
+
+        if (!f_in)
+            cout << "Ha habido un error abriendo el archivo." << endl;
+        else
+        {
+            LeeJugadoresFichero(jugadores, tam, f_in);
+            cout << "Se han procesado " << tam << " jugadores del "
+                "archivo." << endl << endl;
+
+            f_in.close();
+        }
+
+        jug = LeeInfoJugador(intentos);
+
+        if (InsertaJugadorVector(jug, jugadores, tam))
+            cout << "Jugador insertado correctamente." << endl;
+        else
+            cout << "Memoria insuficiente para insertar jugador."
+                << endl;
+
+        cout << endl;
+        cout << "Introduzca el nombre del archivo en que guardar la "
+            "informacion actualizada de los jugadores: ";
+        cin >> f_nom;
+
+        f_out.open(f_nom);
+
+        if (!f_out)
+            cout << "Ha habido un error abriendo el archivo." << endl;
+        else
+        {
+            EscribeJugadoresFichero(jugadores, tam, f_out);
+
+            f_out.close();
+        }
+
+        system(limpiar.c_str());
+    }
 
     return 0;
 }
