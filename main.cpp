@@ -54,8 +54,8 @@ bool MinaAbierta(const Tablero);
 bool TodasCeldasProcesadas(const Tablero);
 void LeeJugadoresFichero(VectorJ, unsigned short &, ifstream &);
 Jugador LeeInfoJugador(unsigned int);
-bool InsertaJugadorVector(Jugador, VectorJ, unsigned int &);
-void EscribeJugadoresFichero(const VectorJ, unsigned int, ofstream &);
+bool InsertaJugadorVector(Jugador, VectorJ, unsigned short &);
+void EscribeJugadoresFichero(const VectorJ, unsigned short, ofstream &);
 
 int main(void)
 {
@@ -415,7 +415,7 @@ Jugador LeeInfoJugador(unsigned int intentos)
 }
 
 bool InsertaJugadorVector(Jugador jug, VectorJ jugadores,
-                          unsigned int & tam)
+                          unsigned short & tam)
 {
     bool mem = false;
 
@@ -433,8 +433,8 @@ bool InsertaJugadorVector(Jugador jug, VectorJ jugadores,
     return mem;
 }
 
-void EscribeJugadoresFichero(const VectorJ jugadores, unsigned int tam,
-                             ofstream & f)
+void EscribeJugadoresFichero(const VectorJ jugadores,
+                             unsigned short tam, ofstream & f)
 {
     for (int i = 0; i < tam; i++)
     {
