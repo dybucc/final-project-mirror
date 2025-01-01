@@ -438,43 +438,43 @@ void LeeCelda(unsigned short & fil, unsigned short & col)
 
 void AbreCelda(Tablero tablero, unsigned short fil, unsigned short col)
 {
-    if (tablero[fil][col].destapada == false &&
-        tablero[fil][col].mina == false)
-        tablero[fil][col].destapada = true;
+    tablero[fil][col].destapada = true;
+
+    tablero[fil][col].n_minas = NumeroMinasVecinas(tablero, fil, col);
 
     if (tablero[fil][col].n_minas == 0)
     {
-        if (fil != 0 && col != 0 && fil != FIL && col != COL ||
-            fil == FIL && col <= COL && col != 0 ||
-            fil != 0 && fil != FIL && col == COL)
+        if (fil - 1 >= 0 && col - 1 >= 0 &&
+            NumeroMinasVecinas(tablero, fil - 1, col - 1) == 0 &&
+            !tablero[fil - 1][col - 1].destapada)
             AbreCelda(tablero, fil - 1, col - 1);
-        if (fil != 0 && col != 0 && fil != FIL && col != COL ||
-            fil == FIL ||
-            fil != 0 && fil != FIL && col >= 0)
+        if (fil - 1 >= 0 &&
+            NumeroMinasVecinas(tablero, fil - 1, col) == 0 &&
+            !tablero[fil - 1][col].destapada)
             AbreCelda(tablero, fil - 1, col);
-        if (fil != 0 && col != 0 && fil != FIL && col != COL ||
-            fil == FIL && col >= 0 && col != COL ||
-            fil != 0 && fil != FIL && col == 0)
+        if (fil - 1 >= 0 && col + 1 < COL &&
+            NumeroMinasVecinas(tablero, fil - 1, col + 1) == 0 &&
+            !tablero[fil - 1][col + 1].destapada)
             AbreCelda(tablero, fil - 1, col + 1);
-        if (fil != 0 && col != 0 && fil != FIL && col != COL ||
-            fil == 0 && col <= COL && col != 0 ||
-            fil != 0 && fil != FIL && col == COL)
+        if (col - 1 >= 0 &&
+            NumeroMinasVecinas(tablero, fil, col - 1) == 0 &&
+            !tablero[fil][col - 1].destapada)
             AbreCelda(tablero, fil, col - 1);
-        if (fil != 0 && col != 0 && fil != FIL && col != COL ||
-            fil == 0 && col >= 0 && col != COL ||
-            fil != 0 && fil != FIL && col == 0)
-            AbreCelda(tablero, fil, fil + 1);
-        if (fil != 0 && col != 0 && fil != FIL && col != COL ||
-            fil == 0 && col <= COL && col != 0 ||
-            fil != 0 && fil != FIL && col == COL)
+        if (col + 1 < COL &&
+            NumeroMinasVecinas(tablero, fil, col + 1) == 0 &&
+            !tablero[fil][col + 1].destapada)
+            AbreCelda(tablero, fil, col + 1);
+        if (fil + 1 < FIL && col - 1 >= 0 &&
+            NumeroMinasVecinas(tablero, fil + 1, col - 1) == 0 &&
+            !tablero[fil + 1][col - 1].destapada)
             AbreCelda(tablero, fil + 1, col - 1);
-        if (fil != 0 && col != 0 && fil != FIL && col != COL ||
-            fil == 0 ||
-            fil != 0 && fil != FIL && col >= 0)
+        if (fil + 1 < FIL &&
+            NumeroMinasVecinas(tablero, fil + 1, col) == 0 &&
+            !tablero[fil + 1][col].destapada)
             AbreCelda(tablero, fil + 1, col);
-        if (fil != 0 && col != 0 && fil != FIL && col != COL ||
-            fil == 0 && col != COL ||
-            fil != 0 && fil != FIL && col == 0)
+        if (fil + 1 < FIL && col + 1 < COL &&
+            NumeroMinasVecinas(tablero, fil + 1, col + 1) == 0 &&
+            !tablero[fil + 1][col + 1].destapada)
             AbreCelda(tablero, fil + 1, col + 1);
     }
     
