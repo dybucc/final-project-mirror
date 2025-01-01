@@ -571,8 +571,6 @@ Jugador LeeInfoJugador(unsigned int intentos)
 {
     Jugador jug = { "", 0, 0, 0, intentos };
 
-    cin.ignore();
-
     for (int i = 0; i < 2; i++)
     {
         cout << "Introduzca ";
@@ -581,7 +579,8 @@ Jugador LeeInfoJugador(unsigned int intentos)
         {
             case 0:
                 cout << "el nombre del jugador: ";
-                getline(cin, jug.nombre);
+                cin >> jug.nombre;
+
                 break;
             case 1:
                 cout << "la fecha de nacimiento del jugador:" << endl;
