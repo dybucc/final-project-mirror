@@ -483,8 +483,8 @@ void AbreCelda(Tablero tablero, unsigned short fil, unsigned short col)
 
 bool FinJuego(const Tablero tablero)
 {
-    bool mina = false,
-         proc = false,
+    bool mina,
+         proc,
          fin = false;
 
     mina = MinaAbierta(tablero);
