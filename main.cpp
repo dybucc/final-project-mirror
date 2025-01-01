@@ -585,21 +585,12 @@ Jugador LeeInfoJugador(unsigned int intentos)
             case 1:
                 cout << "la fecha de nacimiento del jugador:" << endl;
 
-                for (int j = 1; j < 3; j++)
-                    switch (j)
-                    {
-                        case 0:
-                            cout << "Mes: ";
-                            cin >> jug.nacimiento.mes;
-                            break;
-                        case 1:
-                            cout << "Dia: ";
-                            cin >> jug.nacimiento.dia;
-                            break;
-                        case 2:
-                            cout << "Anyo: ";
-                            cin >> jug.nacimiento.anyo;
-                    }
+                cout << "Mes: ";
+                cin >> jug.nacimiento.mes;
+                cout << "Dia: ";
+                cin >> jug.nacimiento.dia;
+                cout << "Anyo: ";
+                cin >> jug.nacimiento.anyo;
         }
     }
 
