@@ -533,10 +533,9 @@ void LeeJugadoresFichero(VectorJ jugadores, unsigned short & tam,
 
     while (getline(f, linea))
     {
-            jugadores[tam].nombre = linea.erase(linea.find('\n'));
         if (linea[0] >= 'a' && linea[0] <= 'z')
+            jugadores[tam].nombre = linea;
         else if (linea.find(' ') != linea.npos)
-        {
             for (int i = 0; i < 3; i++)
             {
                 switch (i)
@@ -544,23 +543,23 @@ void LeeJugadoresFichero(VectorJ jugadores, unsigned short & tam,
                     case 0:
                         jugadores[tam].nacimiento.dia =
                             stoi(linea.substr(0, linea.find(' ')));
+
                         break;
                     case 1:
                         jugadores[tam].nacimiento.mes =
                             stoi(linea.substr(0, linea.find(' ')));
+
                         break;
                     case 2:
-                        jugadores[tam].nacimiento.anyo =
-                            stoi(linea.substr(0, linea.find('\n')));
+                        jugadores[tam].nacimiento.anyo = stoi(linea);
                 }
 
                 if (linea.find(' ') != linea.npos)
-                    linea.erase(0, linea.find(' '));
+                    linea.erase(0, linea.find(' ') + 1);
             }
-        }
         else
         {
-            jugadores[tam].partidas = stoi(linea.erase('\n'));
+            jugadores[tam].jugadas = stoi(linea);
             tam++;
         }
     }
