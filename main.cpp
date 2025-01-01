@@ -512,7 +512,7 @@ bool MinaAbierta(const Tablero tablero)
 bool TodasCeldasProcesadas(const Tablero tablero)
 {
     bool procesadas = false;
-    unsigned short num_procesadas;
+    unsigned short num_procesadas = 0;
 
     for (int i = 0; i < FIL; i++)
         for (int j = 0; j < COL; j++)
