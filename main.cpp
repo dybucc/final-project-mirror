@@ -533,8 +533,8 @@ void LeeJugadoresFichero(VectorJ jugadores, unsigned short & tam,
 
     while (getline(f, linea))
     {
-        if (linea[0] > 'a' && linea[0] < 'z')
             jugadores[tam].nombre = linea.erase(linea.find('\n'));
+        if (linea[0] >= 'a' && linea[0] <= 'z')
         else if (linea.find(' ') != linea.npos)
         {
             for (int i = 0; i < 3; i++)
