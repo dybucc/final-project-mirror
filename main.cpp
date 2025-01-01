@@ -320,7 +320,11 @@ void InicializaAleatoriamente(Tablero tablero)
         for (int j = 0; j < COL; j++)
         {
             if (minas_pos.fil[i] == 1 && minas_pos.col[j] == 1)
+            {
                 tablero[i][j].mina = true;
+                minas_pos.fil[i] = 0;
+                minas_pos.col[j] = 0;
+            }
             else
                 tablero[i][j].mina = false;
 
