@@ -516,8 +516,8 @@ bool TodasCeldasProcesadas(const Tablero tablero)
 
     for (int i = 0; i < FIL; i++)
         for (int j = 0; j < COL; j++)
-            if (tablero[i][j].destapada == true ||
-                tablero[i][j].bandera == true)
+            if (tablero[i][j].destapada ||
+                tablero[i][j].mina && tablero[i][j].bandera)
                 num_procesadas++;
 
     if (num_procesadas == FIL * COL)
