@@ -623,9 +623,9 @@ void EscribeJugadoresFichero(const VectorJ jugadores,
     {
         f << jugadores[i].nombre << endl;
 
-        f << jugadores[i].nacimiento.dia << endl;
-        f << jugadores[i].nacimiento.mes << endl;
-        f << jugadores[i].nacimiento.anyo << endl;
+        f << jugadores[i].nacimiento.dia << " "
+            << jugadores[i].nacimiento.mes << " "
+            << jugadores[i].nacimiento.anyo << endl;
 
         f << jugadores[i].jugadas << endl;
     }
