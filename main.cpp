@@ -23,7 +23,7 @@ struct Jugador
 {
     string nombre;
     Fecha nacimiento;
-    unsigned int partidas;
+    unsigned int jugadas;
 };
 
 struct Estado
@@ -618,7 +618,7 @@ bool InsertaJugadorVector(Jugador jug, VectorJ jugadores,
         mem = true;
 
         jugadores[tam].nombre = jug.nombre;
-        jugadores[tam].partidas = jug.partidas;
+        jugadores[tam].jugadas = jug.jugadas;
         jugadores[tam].nacimiento = jug.nacimiento;
 
         tam++;
@@ -638,7 +638,7 @@ void EscribeJugadoresFichero(const VectorJ jugadores,
         f << jugadores[i].nacimiento.mes << endl;
         f << jugadores[i].nacimiento.anyo << endl;
 
-        f << jugadores[i].partidas << endl;
+        f << jugadores[i].jugadas << endl;
     }
 
     return;
