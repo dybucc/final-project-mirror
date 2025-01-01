@@ -290,8 +290,11 @@ void InicializaAleatoriamente(Tablero tablero)
 {
     srand(time(NULL));
 
-    unsigned short num_minas = rand() & MAX_MINAS + 1;
+    unsigned short num_minas = 0;
     Posicion minas_pos;
+
+    while (num_minas == 0)
+        num_minas = rand() % MAX_MINAS + 1;
 
     for (int i = 0; i < FIL; i++)
     {
