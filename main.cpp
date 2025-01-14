@@ -47,8 +47,8 @@ struct Posicion
     unsigned short col[COL];
 };
 
-void InicializarDesdeFichero(Tablero, ifstream &);
 char Menu(void);
+void InicializaDesdeFichero(Tablero, ifstream &);
 unsigned short NumeroMinasVecinas(const Tablero, unsigned short,
                                   unsigned short);
 void InicializaAleatoriamente(Tablero);
@@ -99,7 +99,7 @@ int main(void)
                         << endl;
                 else
                 {
-                    InicializarDesdeFichero(tablero, f_in);
+                    InicializaDesdeFichero(tablero, f_in);
 
                     f_in.close();
                 }
@@ -222,7 +222,7 @@ char Menu(void)
     return opcion;
 }
 
-void InicializarDesdeFichero(Tablero tablero, ifstream & f)
+void InicializaDesdeFichero(Tablero tablero, ifstream & f)
 {
     string linea;
 
