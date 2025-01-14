@@ -112,9 +112,10 @@ int main(void)
             case 'c':
                 LeeCelda(fil, col);
                 if (!tablero[fil][col].destapada)
+                {
                     AbreCelda(tablero, fil, col);
-
-                intentos++;
+                    intentos++;
+                }
 
                 break;
             case 'd':
