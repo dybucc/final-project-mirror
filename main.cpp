@@ -47,8 +47,8 @@ struct Posicion
     unsigned short col[COL];
 };
 
-char Menu();
 void InicializarDesdeFichero(Tablero, ifstream &);
+char Menu(void);
 unsigned short NumeroMinasVecinas(const Tablero, unsigned short,
                                   unsigned short);
 void InicializaAleatoriamente(Tablero);
@@ -196,7 +196,7 @@ int main(void)
     return 0;
 }
 
-char Menu()
+char Menu(void)
 {
     char opcion = 'a';
 
