@@ -7,9 +7,9 @@
 using namespace std;
 
 #ifdef _WIN32
-    string limpiar = "cls";
+    const string limpiar = "cls";
 #else
-    string limpiar = "clear";
+    const string limpiar = "clear";
 #endif
 
 struct Fecha
