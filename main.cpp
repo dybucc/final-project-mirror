@@ -120,12 +120,16 @@ int main(void)
                 break;
             case 'd':
                 LeeCelda(fil, col);
-                tablero[fil][col].bandera = true;
+
+                if (!tablero[fil][col].bandera)
+                    tablero[fil][col].bandera = true;
 
                 break;
             case 'e':
                 LeeCelda(fil, col);
-                tablero[fil][col].bandera = false;
+
+                if (tablero[fil][col].bandera)
+                    tablero[fil][col].bandera = false;
         }
 
         system(limpiar.c_str());
