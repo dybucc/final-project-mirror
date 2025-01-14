@@ -23,7 +23,7 @@ struct Jugador
 {
     string nombre;
     Fecha nacimiento;
-    unsigned int jugadas;
+    unsigned short jugadas;
 };
 
 struct Estado
@@ -59,7 +59,7 @@ bool FinJuego(const Tablero);
 bool MinaAbierta(const Tablero);
 bool TodasCeldasProcesadas(const Tablero);
 void LeeJugadoresFichero(VectorJ, unsigned short &, ifstream &);
-Jugador LeeInfoJugador(unsigned int);
+Jugador LeeInfoJugador(unsigned short);
 bool InsertaJugadorVector(Jugador, VectorJ, unsigned short &);
 void EscribeJugadoresFichero(const VectorJ, unsigned short, ofstream &);
 
@@ -68,8 +68,8 @@ int main(void)
     char opcion = 'a';
     unsigned short fil,
                    col,
-                   tam = 0;
-    unsigned int intentos = 0;
+                   tam = 0,
+                   intentos = 0;
     string f_nom;
     ifstream f_in;
     ofstream f_out;
@@ -567,7 +567,7 @@ void LeeJugadoresFichero(VectorJ jugadores, unsigned short & tam,
     return;
 }
 
-Jugador LeeInfoJugador(unsigned int intentos)
+Jugador LeeInfoJugador(unsigned short intentos)
 {
     Jugador jug = { "", 0, 0, 0, intentos };
 
