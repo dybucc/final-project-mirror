@@ -49,9 +49,9 @@ struct Posicion
 
 char Menu(void);
 void InicializaDesdeFichero(Tablero, ifstream &);
+void InicializaAleatoriamente(Tablero);
 unsigned short NumeroMinasVecinas(const Tablero, unsigned short,
                                   unsigned short);
-void InicializaAleatoriamente(Tablero);
 void MuestraTablero(const Tablero);
 void LeeCelda(unsigned short &, unsigned short &);
 void AbreCelda(Tablero, unsigned short, unsigned short);
@@ -241,51 +241,6 @@ void InicializaDesdeFichero(Tablero tablero, ifstream & f)
     return;
 }
 
-unsigned short NumeroMinasVecinas(const Tablero tablero,
-                                  unsigned short fil,
-                                  unsigned short col)
-{
-    unsigned short minas = 0;
-    Posicion pos;
-
-    switch (fil)
-    {
-        case 0:
-            pos.fil[0] = fil;
-            pos.fil[1] = fil + 1;
-            break;
-        case FIL - 1:
-            pos.fil[0] = fil - 1;
-            pos.fil[1] = fil;
-            break;
-        default:
-            pos.fil[0] = fil - 1;
-            pos.fil[1] = fil + 1;
-    }
-
-    switch (col)
-    {
-        case 0:
-            pos.col[0] = col;
-            pos.col[1] = col + 1;
-            break;
-        case COL - 1:
-            pos.col[0] = col - 1;
-            pos.col[1] = col;
-            break;
-        default:
-            pos.col[0] = col - 1;
-            pos.col[1] = col + 1;
-    }
-
-    for (int i = pos.fil[0]; i <= pos.fil[1]; i++)
-        for (int j = pos.col[0]; j <= pos.col[1]; j++)
-            if (tablero[i][j].mina && (i != fil || j != col))
-                minas++;
-
-    return minas;
-}
-
 void InicializaAleatoriamente(Tablero tablero)
 {
     srand(time(NULL));
@@ -334,6 +289,55 @@ void InicializaAleatoriamente(Tablero tablero)
         }
 
     return;
+}
+
+unsigned short NumeroMinasVecinas(const Tablero tablero,
+                                  unsigned short fil,
+                                  unsigned short col)
+{
+    unsigned short minas = 0;
+    Posicion pos;
+
+    switch (fil)
+    {
+        case 0:
+            pos.fil[0] = fil;
+            pos.fil[1] = fil + 1;
+
+            break;
+        case FIL - 1:
+            pos.fil[0] = fil - 1;
+            pos.fil[1] = fil;
+
+            break;
+        default:
+            pos.fil[0] = fil - 1;
+            pos.fil[1] = fil + 1;
+    }
+
+    switch (col)
+    {
+        case 0:
+            pos.col[0] = col;
+            pos.col[1] = col + 1;
+
+            break;
+        case COL - 1:
+            pos.col[0] = col - 1;
+            pos.col[1] = col;
+
+            break;
+        default:
+            pos.col[0] = col - 1;
+            pos.col[1] = col + 1;
+    }
+
+    for (int i = pos.fil[0]; i <= pos.fil[1]; i++)
+        for (int j = pos.col[0]; j <= pos.col[1]; j++)
+            if (tablero[i][j].mina && (i != fil || j != col))
+                minas++;
+
+    return minas;
 }
 
 void MuestraTablero(const Tablero tablero)
