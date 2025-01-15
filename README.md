@@ -30,6 +30,15 @@ se han trasladado a la carpeta `./doc/eg`. Si se desea comprobar el
 funcionamiento del programa, se deberán copiar a la carpeta donde reside el
 archivo fuente del programa.
 
+### Documentación de Doxygen
+
+La documentación ya se encuentra generada, pero si se desea volver a generar, el
+siguiente comando será necesario:
+
+```sh
+doyxgen ./doc/doxygen/Doxyfile
+```
+
 ### Formato de los archivos fuente
 
 La guía de estilo recomendada desde la universidad no hacía referencia a la

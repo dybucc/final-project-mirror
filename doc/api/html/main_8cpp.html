@@ -1,0 +1,812 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Proyecto final: minesweeper: Referencia del archivo src/main.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Proyecto final: minesweeper<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.13.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Buscar',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('main_8cpp.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Clases</a> &#124;
+<a href="#typedef-members">typedefs</a> &#124;
+<a href="#func-members">Funciones</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle"><div class="title">Referencia del archivo main.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Permite jugar al buscaminas en un tablero fijo, pero variable en el programa, de 8x8.  
+<a href="#details">Más...</a></p>
+<div class="textblock"><code>#include &lt;cstdlib&gt;</code><br />
+<code>#include &lt;ctime&gt;</code><br />
+<code>#include &lt;fstream&gt;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Clases</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFecha.html">Fecha</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Estructura para registrar fechas en cualquier formato, con los datos de dia, mes y anyo.  <a href="structFecha.html#details">Más...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structJugador.html">Jugador</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Estructura para almacenar datos particulares de cada jugador.  <a href="structJugador.html#details">Más...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structEstado.html">Estado</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Estructura para guardar el estado de cada celda del tablero.  <a href="structEstado.html#details">Más...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPosicion.html">Posicion</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Estructura para guardar temporalmente las posiciones de celdas; auxiliar a ciertas funciones de cambio de celdas mayores a 1.  <a href="structPosicion.html#details">Más...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+typedefs</h2></td></tr>
+<tr class="memitem:a325a3808d398572b9390d6e79feec5f9" id="r_a325a3808d398572b9390d6e79feec5f9"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="structJugador.html">Jugador</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a325a3808d398572b9390d6e79feec5f9">VectorJ</a>[<a class="el" href="#a46cd6df5c37c94fd72ac563cf7586281">MAX_JUGADORES</a>]</td></tr>
+<tr class="memdesc:a325a3808d398572b9390d6e79feec5f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array en que almacenar los datos de todos los jugadores, siendo 100 el maximo.  <br /></td></tr>
+<tr class="separator:a325a3808d398572b9390d6e79feec5f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe6c81774528bfa572de23115c3d999e" id="r_abe6c81774528bfa572de23115c3d999e"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="structEstado.html">Estado</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abe6c81774528bfa572de23115c3d999e">Tablero</a>[<a class="el" href="#a12b34d2562666bca2f024a37a5509399">FIL</a>][<a class="el" href="#adab99d7b5fdffe30c2106b2396c9006a">COL</a>]</td></tr>
+<tr class="memdesc:abe6c81774528bfa572de23115c3d999e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array en que representar el estado del tablero, con datos particulares a cada celda.  <br /></td></tr>
+<tr class="separator:abe6c81774528bfa572de23115c3d999e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Funciones</h2></td></tr>
+<tr class="memitem:ac69cda75d03a9b7f7b2e9f90918622c0" id="r_ac69cda75d03a9b7f7b2e9f90918622c0"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac69cda75d03a9b7f7b2e9f90918622c0">Menu</a> (void)</td></tr>
+<tr class="memdesc:ac69cda75d03a9b7f7b2e9f90918622c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve la opcion elegida de un menu.  <br /></td></tr>
+<tr class="separator:ac69cda75d03a9b7f7b2e9f90918622c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15614a7503b70173d4076a7b48d6c65c" id="r_a15614a7503b70173d4076a7b48d6c65c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a15614a7503b70173d4076a7b48d6c65c">InicializaDesdeFichero</a> (<a class="el" href="#abe6c81774528bfa572de23115c3d999e">Tablero</a> tablero, ifstream &amp;f)</td></tr>
+<tr class="memdesc:a15614a7503b70173d4076a7b48d6c65c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lee datos de un archivo abierto con formato fijo y los escribe en un array de tablero.  <br /></td></tr>
+<tr class="separator:a15614a7503b70173d4076a7b48d6c65c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3fc5204d93d1ac42b3c56aa1d02de8f" id="r_ae3fc5204d93d1ac42b3c56aa1d02de8f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae3fc5204d93d1ac42b3c56aa1d02de8f">InicializaAleatoriamente</a> (<a class="el" href="#abe6c81774528bfa572de23115c3d999e">Tablero</a> tablero)</td></tr>
+<tr class="memdesc:ae3fc5204d93d1ac42b3c56aa1d02de8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Asigna datos aleatorios a ciertas posiciones de un array tablero.  <br /></td></tr>
+<tr class="separator:ae3fc5204d93d1ac42b3c56aa1d02de8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a994c1134ebd1ebeecaa91a803227e5e0" id="r_a994c1134ebd1ebeecaa91a803227e5e0"><td class="memItemLeft" align="right" valign="top">unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a994c1134ebd1ebeecaa91a803227e5e0">NumeroMinasVecinas</a> (const <a class="el" href="#abe6c81774528bfa572de23115c3d999e">Tablero</a> tablero, unsigned short fil, unsigned short col)</td></tr>
+<tr class="memdesc:a994c1134ebd1ebeecaa91a803227e5e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve el numero de celdas vecinas que contienen una mina en un array tablero.  <br /></td></tr>
+<tr class="separator:a994c1134ebd1ebeecaa91a803227e5e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97c886a0d0b27ee7de3f2294afb69bea" id="r_a97c886a0d0b27ee7de3f2294afb69bea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a97c886a0d0b27ee7de3f2294afb69bea">MuestraTablero</a> (const <a class="el" href="#abe6c81774528bfa572de23115c3d999e">Tablero</a> tablero)</td></tr>
+<tr class="memdesc:a97c886a0d0b27ee7de3f2294afb69bea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Imprime por pantalla la situacion del tablero de valores preinicializados.  <br /></td></tr>
+<tr class="separator:a97c886a0d0b27ee7de3f2294afb69bea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5665ae882ac61ef717378079071829da" id="r_a5665ae882ac61ef717378079071829da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5665ae882ac61ef717378079071829da">LeeCelda</a> (unsigned short &amp;fil, unsigned short &amp;col)</td></tr>
+<tr class="memdesc:a5665ae882ac61ef717378079071829da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Procesa celdas introducidas por teclado por el usuario.  <br /></td></tr>
+<tr class="separator:a5665ae882ac61ef717378079071829da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07c4eb557607fa4fd7af6421d108b68b" id="r_a07c4eb557607fa4fd7af6421d108b68b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a07c4eb557607fa4fd7af6421d108b68b">AbreCelda</a> (<a class="el" href="#abe6c81774528bfa572de23115c3d999e">Tablero</a> tablero, unsigned short fil, unsigned short col)</td></tr>
+<tr class="memdesc:a07c4eb557607fa4fd7af6421d108b68b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modifica el estado de posiciones de un array tablero.  <br /></td></tr>
+<tr class="separator:a07c4eb557607fa4fd7af6421d108b68b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87857661d472f4f784769788b0f46ee8" id="r_a87857661d472f4f784769788b0f46ee8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a87857661d472f4f784769788b0f46ee8">FinJuego</a> (const <a class="el" href="#abe6c81774528bfa572de23115c3d999e">Tablero</a> tablero)</td></tr>
+<tr class="memdesc:a87857661d472f4f784769788b0f46ee8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comprueba si la partida jugada ha finalizado mediante dos posibles escenarios explorados en otras funciones.  <br /></td></tr>
+<tr class="separator:a87857661d472f4f784769788b0f46ee8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6092200ec64a490f8eb6a55684cfab8" id="r_aa6092200ec64a490f8eb6a55684cfab8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa6092200ec64a490f8eb6a55684cfab8">MinaAbierta</a> (const <a class="el" href="#abe6c81774528bfa572de23115c3d999e">Tablero</a> tablero)</td></tr>
+<tr class="memdesc:aa6092200ec64a490f8eb6a55684cfab8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve la condicion de fin por existir una celda con mina destapada en el tablero proveido.  <br /></td></tr>
+<tr class="separator:aa6092200ec64a490f8eb6a55684cfab8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b5d20758946ccffed2db3465eeba5fb" id="r_a4b5d20758946ccffed2db3465eeba5fb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4b5d20758946ccffed2db3465eeba5fb">TodasCeldasProcesadas</a> (const <a class="el" href="#abe6c81774528bfa572de23115c3d999e">Tablero</a> tablero)</td></tr>
+<tr class="memdesc:a4b5d20758946ccffed2db3465eeba5fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve la condicion de fin por haber destapado todas las celdas del tablero sin minas, y haber colocado una bandera en todas las celdas con minas.  <br /></td></tr>
+<tr class="separator:a4b5d20758946ccffed2db3465eeba5fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a461a98cebc470bc1f3d96cd413687df8" id="r_a461a98cebc470bc1f3d96cd413687df8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a461a98cebc470bc1f3d96cd413687df8">LeeJugadoresFichero</a> (<a class="el" href="#a325a3808d398572b9390d6e79feec5f9">VectorJ</a> jugadores, unsigned short &amp;tam, ifstream &amp;f)</td></tr>
+<tr class="memdesc:a461a98cebc470bc1f3d96cd413687df8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lee jugadores de un archivo de entrada de formato fijo, y almacena los datos encontrados en un array de jugadores.  <br /></td></tr>
+<tr class="separator:a461a98cebc470bc1f3d96cd413687df8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ba54e0848f51067e50f0a4962909606" id="r_a1ba54e0848f51067e50f0a4962909606"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJugador.html">Jugador</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1ba54e0848f51067e50f0a4962909606">LeeInfoJugador</a> (unsigned short intentos)</td></tr>
+<tr class="memdesc:a1ba54e0848f51067e50f0a4962909606"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recoge informacion por teclado del usuario sobre el jugador que ha acabado la partida.  <br /></td></tr>
+<tr class="separator:a1ba54e0848f51067e50f0a4962909606"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21d72a97310eb7ae3234e56c9e5c72fc" id="r_a21d72a97310eb7ae3234e56c9e5c72fc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21d72a97310eb7ae3234e56c9e5c72fc">InsertaJugadorVector</a> (<a class="el" href="structJugador.html">Jugador</a> jug, <a class="el" href="#a325a3808d398572b9390d6e79feec5f9">VectorJ</a> jugadores, unsigned short &amp;tam)</td></tr>
+<tr class="memdesc:a21d72a97310eb7ae3234e56c9e5c72fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserta los datos de un jugador en un array de jugadores.  <br /></td></tr>
+<tr class="separator:a21d72a97310eb7ae3234e56c9e5c72fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e8a646692dc6295bcee321cdeff502d" id="r_a9e8a646692dc6295bcee321cdeff502d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9e8a646692dc6295bcee321cdeff502d">EscribeJugadoresFichero</a> (const <a class="el" href="#a325a3808d398572b9390d6e79feec5f9">VectorJ</a> jugadores, unsigned short tam, ofstream &amp;f)</td></tr>
+<tr class="memdesc:a9e8a646692dc6295bcee321cdeff502d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Escribe los datos de un array de jugadores en un archivo de salida.  <br /></td></tr>
+<tr class="separator:a9e8a646692dc6295bcee321cdeff502d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a840291bc02cba5474a4cb46a9b9566fe" id="r_a840291bc02cba5474a4cb46a9b9566fe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a840291bc02cba5474a4cb46a9b9566fe">main</a> (void)</td></tr>
+<tr class="separator:a840291bc02cba5474a4cb46a9b9566fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a32bd7df8393f14d027cb4fd81eb03bc4" id="r_a32bd7df8393f14d027cb4fd81eb03bc4"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a32bd7df8393f14d027cb4fd81eb03bc4">limpiar</a> = &quot;clear&quot;</td></tr>
+<tr class="memdesc:a32bd7df8393f14d027cb4fd81eb03bc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comprueba el sistema en que se ejecuta el programa, y configura el comando para limpiar la pantalla pero no el buffer.  <br /></td></tr>
+<tr class="separator:a32bd7df8393f14d027cb4fd81eb03bc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8b1ad48baef553d39d5dbae3e8167f4" id="r_af8b1ad48baef553d39d5dbae3e8167f4"><td class="memItemLeft" align="right" valign="top">const unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af8b1ad48baef553d39d5dbae3e8167f4">MAX_MINAS</a> = 8</td></tr>
+<tr class="memdesc:af8b1ad48baef553d39d5dbae3e8167f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximo numero de minas.  <br /></td></tr>
+<tr class="separator:af8b1ad48baef553d39d5dbae3e8167f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46cd6df5c37c94fd72ac563cf7586281" id="r_a46cd6df5c37c94fd72ac563cf7586281"><td class="memItemLeft" align="right" valign="top">const unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a46cd6df5c37c94fd72ac563cf7586281">MAX_JUGADORES</a> = 100</td></tr>
+<tr class="memdesc:a46cd6df5c37c94fd72ac563cf7586281"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximo numero de jugadores.  <br /></td></tr>
+<tr class="separator:a46cd6df5c37c94fd72ac563cf7586281"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12b34d2562666bca2f024a37a5509399" id="r_a12b34d2562666bca2f024a37a5509399"><td class="memItemLeft" align="right" valign="top">const unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a12b34d2562666bca2f024a37a5509399">FIL</a> = 8</td></tr>
+<tr class="memdesc:a12b34d2562666bca2f024a37a5509399"><td class="mdescLeft">&#160;</td><td class="mdescRight">Filas en el tablero.  <br /></td></tr>
+<tr class="separator:a12b34d2562666bca2f024a37a5509399"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adab99d7b5fdffe30c2106b2396c9006a" id="r_adab99d7b5fdffe30c2106b2396c9006a"><td class="memItemLeft" align="right" valign="top">const unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adab99d7b5fdffe30c2106b2396c9006a">COL</a> = 8</td></tr>
+<tr class="memdesc:adab99d7b5fdffe30c2106b2396c9006a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Columnas en el tablero.  <br /></td></tr>
+<tr class="separator:adab99d7b5fdffe30c2106b2396c9006a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
+<div class="textblock"><p>Permite jugar al buscaminas en un tablero fijo, pero variable en el programa, de 8x8. </p>
+<p>Datos de entrada: nombres de archivos: cadenas de caracteres; opcion de menu: caracter; valores de celdas: enteros positivos pequenos.</p>
+<p>Datos de salida: tablero: caracteres, enteros positivos pequenos; menu, mensajes finales: cadenas de caracteres.</p>
+<dl class="section author"><dt>Autor</dt><dd>Adam Martinez </dd></dl>
+<dl class="section date"><dt>Fecha</dt><dd>01/15/2025 </dd></dl>
+<dl class="section version"><dt>Versión</dt><dd>0.0.1 </dd></dl>
+</div><h2 class="groupheader">Documentación de «typedef»</h2>
+<a id="abe6c81774528bfa572de23115c3d999e" name="abe6c81774528bfa572de23115c3d999e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe6c81774528bfa572de23115c3d999e">&#9670;&#160;</a></span>Tablero</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="structEstado.html">Estado</a> Tablero[<a class="el" href="#a12b34d2562666bca2f024a37a5509399">FIL</a>][<a class="el" href="#adab99d7b5fdffe30c2106b2396c9006a">COL</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Array en que representar el estado del tablero, con datos particulares a cada celda. </p>
+
+</div>
+</div>
+<a id="a325a3808d398572b9390d6e79feec5f9" name="a325a3808d398572b9390d6e79feec5f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a325a3808d398572b9390d6e79feec5f9">&#9670;&#160;</a></span>VectorJ</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="structJugador.html">Jugador</a> VectorJ[<a class="el" href="#a46cd6df5c37c94fd72ac563cf7586281">MAX_JUGADORES</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Array en que almacenar los datos de todos los jugadores, siendo 100 el maximo. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentación de funciones</h2>
+<a id="a07c4eb557607fa4fd7af6421d108b68b" name="a07c4eb557607fa4fd7af6421d108b68b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07c4eb557607fa4fd7af6421d108b68b">&#9670;&#160;</a></span>AbreCelda()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AbreCelda </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#abe6c81774528bfa572de23115c3d999e">Tablero</a></td>          <td class="paramname"><span class="paramname"><em>tablero</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short</td>          <td class="paramname"><span class="paramname"><em>fil</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short</td>          <td class="paramname"><span class="paramname"><em>col</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Modifica el estado de posiciones de un array tablero. </p>
+<p>Explora recursivamente las celdas vecinas si estas no estan en contacto con posiciones que contengan minas. Utiliza una logica similar al algoritmo flood-fill en 8 direcciones.</p>
+<dl class="section pre"><dt>Precondición</dt><dd>El tablero debe tener sus valores inicializados; tomar especial atencion con valores enteros.</dd></dl>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">tablero</td><td>Array del que leer y modificar estados de celda(s). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">fil</td><td>Numero de fila para la celda desde la que explorar. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">col</td><td>Numero de columna para la celda desde la que explorar. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9e8a646692dc6295bcee321cdeff502d" name="a9e8a646692dc6295bcee321cdeff502d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e8a646692dc6295bcee321cdeff502d">&#9670;&#160;</a></span>EscribeJugadoresFichero()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EscribeJugadoresFichero </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#a325a3808d398572b9390d6e79feec5f9">VectorJ</a></td>          <td class="paramname"><span class="paramname"><em>jugadores</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short</td>          <td class="paramname"><span class="paramname"><em>tam</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ofstream &amp;</td>          <td class="paramname"><span class="paramname"><em>f</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Escribe los datos de un array de jugadores en un archivo de salida. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">jugadores</td><td>Array de jugadores con multiples registros. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">tam</td><td>Cantidad de espacios rellenados en el array. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">f</td><td>Archivo de salida en el que escribir los datos de jugadores. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a87857661d472f4f784769788b0f46ee8" name="a87857661d472f4f784769788b0f46ee8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87857661d472f4f784769788b0f46ee8">&#9670;&#160;</a></span>FinJuego()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FinJuego </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#abe6c81774528bfa572de23115c3d999e">Tablero</a></td>          <td class="paramname"><span class="paramname"><em>tablero</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Comprueba si la partida jugada ha finalizado mediante dos posibles escenarios explorados en otras funciones. </p>
+<dl class="section see"><dt>Ver también</dt><dd><a class="el" href="#aa6092200ec64a490f8eb6a55684cfab8" title="Devuelve la condicion de fin por existir una celda con mina destapada en el tablero proveido.">MinaAbierta()</a> </dd>
+<dd>
+<a class="el" href="#a4b5d20758946ccffed2db3465eeba5fb" title="Devuelve la condicion de fin por haber destapado todas las celdas del tablero sin minas,...">TodasCeldasProcesadas()</a></dd></dl>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">tablero</td><td>Array de filas y columnas del que leer datos de celdas.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores devueltos</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>Se ha finalizado la partida. </td></tr>
+    <tr><td class="paramname">false</td><td>La partida aun puede continuar. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae3fc5204d93d1ac42b3c56aa1d02de8f" name="ae3fc5204d93d1ac42b3c56aa1d02de8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3fc5204d93d1ac42b3c56aa1d02de8f">&#9670;&#160;</a></span>InicializaAleatoriamente()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void InicializaAleatoriamente </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#abe6c81774528bfa572de23115c3d999e">Tablero</a></td>          <td class="paramname"><span class="paramname"><em>tablero</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Asigna datos aleatorios a ciertas posiciones de un array tablero. </p>
+<p>El resto de posiciones se inicializan con valores por defecto, contrarios a los de las celdas-minas.</p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">tablero</td><td>Array de filas y columnas a inicializar. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a15614a7503b70173d4076a7b48d6c65c" name="a15614a7503b70173d4076a7b48d6c65c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15614a7503b70173d4076a7b48d6c65c">&#9670;&#160;</a></span>InicializaDesdeFichero()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void InicializaDesdeFichero </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#abe6c81774528bfa572de23115c3d999e">Tablero</a></td>          <td class="paramname"><span class="paramname"><em>tablero</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ifstream &amp;</td>          <td class="paramname"><span class="paramname"><em>f</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Lee datos de un archivo abierto con formato fijo y los escribe en un array de tablero. </p>
+<p>Las posiciones del archivo que no estan afectadas se inicializan con valores por defecto, contrarios a los de las celdas-minas.</p>
+<dl class="section pre"><dt>Precondición</dt><dd>El archivo recibido debe estar abierto; se asume la ausencia de badbit, failbit y eofbit.</dd>
+<dd>
+El archivo debe contener posiciones validas, y un maximo de valores ajustado al maximo de minas establecido; no se realizara ninguna comprobacion.</dd></dl>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">tablero</td><td>Array de filas y columnas a inicializar. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">f</td><td>Archivo de entrada del que leer la informacion. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a21d72a97310eb7ae3234e56c9e5c72fc" name="a21d72a97310eb7ae3234e56c9e5c72fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21d72a97310eb7ae3234e56c9e5c72fc">&#9670;&#160;</a></span>InsertaJugadorVector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool InsertaJugadorVector </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structJugador.html">Jugador</a></td>          <td class="paramname"><span class="paramname"><em>jug</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a325a3808d398572b9390d6e79feec5f9">VectorJ</a></td>          <td class="paramname"><span class="paramname"><em>jugadores</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short &amp;</td>          <td class="paramname"><span class="paramname"><em>tam</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Inserta los datos de un jugador en un array de jugadores. </p>
+<p>Comprueba si el array esta lleno previo a la realizacion de alguna operacion.</p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">jug</td><td>Estructura con los datos del nuevo jugador. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">jugadores</td><td>Array de jugadores con registros de otros jugadores. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">tam</td><td>Cantidad de espacios rellenados del array.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores devueltos</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>El array de jugadores no esta lleno. </td></tr>
+    <tr><td class="paramname">false</td><td>El array de jugadores esta lleno. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5665ae882ac61ef717378079071829da" name="a5665ae882ac61ef717378079071829da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5665ae882ac61ef717378079071829da">&#9670;&#160;</a></span>LeeCelda()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LeeCelda </td>
+          <td>(</td>
+          <td class="paramtype">unsigned short &amp;</td>          <td class="paramname"><span class="paramname"><em>fil</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short &amp;</td>          <td class="paramname"><span class="paramname"><em>col</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Procesa celdas introducidas por teclado por el usuario. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">fil</td><td>Numero de la fila para la celda a leer. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">col</td><td>Numero de la columna para la celda a leer. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1ba54e0848f51067e50f0a4962909606" name="a1ba54e0848f51067e50f0a4962909606"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ba54e0848f51067e50f0a4962909606">&#9670;&#160;</a></span>LeeInfoJugador()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structJugador.html">Jugador</a> LeeInfoJugador </td>
+          <td>(</td>
+          <td class="paramtype">unsigned short</td>          <td class="paramname"><span class="paramname"><em>intentos</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Recoge informacion por teclado del usuario sobre el jugador que ha acabado la partida. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">intentos</td><td>Numero de jugadas/intentos realizados en la partida.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>Estructura de jugador con datos rellenados. </dd></dl>
+
+</div>
+</div>
+<a id="a461a98cebc470bc1f3d96cd413687df8" name="a461a98cebc470bc1f3d96cd413687df8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a461a98cebc470bc1f3d96cd413687df8">&#9670;&#160;</a></span>LeeJugadoresFichero()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LeeJugadoresFichero </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a325a3808d398572b9390d6e79feec5f9">VectorJ</a></td>          <td class="paramname"><span class="paramname"><em>jugadores</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short &amp;</td>          <td class="paramname"><span class="paramname"><em>tam</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ifstream &amp;</td>          <td class="paramname"><span class="paramname"><em>f</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Lee jugadores de un archivo de entrada de formato fijo, y almacena los datos encontrados en un array de jugadores. </p>
+<dl class="section pre"><dt>Precondición</dt><dd>El archivo recibido debe estar abierto; se asume que no hay ningun badbit, failbit o eofbit.</dd>
+<dd>
+El archivo debe contener un numero de jugadores en el rango 0-100 para evitar que el vector no recoja todos los jugadores. Los datos de los jugadores tambien deben ser conformes con los datos del archivo de ejemplo; no se realizara ninguna comprobacion.</dd></dl>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">jugadores</td><td>Array de jugadores en el que escribir datos. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">tam</td><td>Tamano del array rellenado con los jugadores del archivo. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">f</td><td>Archivo de entrada con jugadores existentes. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a840291bc02cba5474a4cb46a9b9566fe" name="a840291bc02cba5474a4cb46a9b9566fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a840291bc02cba5474a4cb46a9b9566fe">&#9670;&#160;</a></span>main()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int main </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac69cda75d03a9b7f7b2e9f90918622c0" name="ac69cda75d03a9b7f7b2e9f90918622c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac69cda75d03a9b7f7b2e9f90918622c0">&#9670;&#160;</a></span>Menu()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char Menu </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Devuelve la opcion elegida de un menu. </p>
+<p>El menu ofrece la capacidad para cargar minas desde archivo, cargar minas aleatoriamente, descubrir celdas de un tablero inicializado, anadir banderas a celdas, y desmarcar banderas de celdas.</p>
+<dl class="section return"><dt>Devuelve</dt><dd>Caracter introducido por el usuario con la opcion elegida. </dd></dl>
+
+</div>
+</div>
+<a id="aa6092200ec64a490f8eb6a55684cfab8" name="aa6092200ec64a490f8eb6a55684cfab8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6092200ec64a490f8eb6a55684cfab8">&#9670;&#160;</a></span>MinaAbierta()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MinaAbierta </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#abe6c81774528bfa572de23115c3d999e">Tablero</a></td>          <td class="paramname"><span class="paramname"><em>tablero</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Devuelve la condicion de fin por existir una celda con mina destapada en el tablero proveido. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">tablero</td><td>Array de filas y columnas del que leer datos de celdas.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores devueltos</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>No hay ninguna celda-mina destapada. </td></tr>
+    <tr><td class="paramname">false</td><td>Hay una mina destapada. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a97c886a0d0b27ee7de3f2294afb69bea" name="a97c886a0d0b27ee7de3f2294afb69bea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97c886a0d0b27ee7de3f2294afb69bea">&#9670;&#160;</a></span>MuestraTablero()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MuestraTablero </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#abe6c81774528bfa572de23115c3d999e">Tablero</a></td>          <td class="paramname"><span class="paramname"><em>tablero</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Imprime por pantalla la situacion del tablero de valores preinicializados. </p>
+<p>La impresion del tablero soporta capacidad para incrementar el numero de filas y columnas del juego, si asi se desease, aunque esto esta fuera de los requerimientos del proyecto.</p>
+<dl class="section pre"><dt>Precondición</dt><dd>El tablero debe tener sus valores inicializados; tomar especial atencion con valores enteros.</dd></dl>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">tablero</td><td>Array de filas y columnas del que leer datos. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a994c1134ebd1ebeecaa91a803227e5e0" name="a994c1134ebd1ebeecaa91a803227e5e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a994c1134ebd1ebeecaa91a803227e5e0">&#9670;&#160;</a></span>NumeroMinasVecinas()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned short NumeroMinasVecinas </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#abe6c81774528bfa572de23115c3d999e">Tablero</a></td>          <td class="paramname"><span class="paramname"><em>tablero</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short</td>          <td class="paramname"><span class="paramname"><em>fil</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short</td>          <td class="paramname"><span class="paramname"><em>col</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Devuelve el numero de celdas vecinas que contienen una mina en un array tablero. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">tablero</td><td>Array de filas y columnas del que leer datos de celdas. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">fil</td><td>Fila de la celda desde la que determinar minas vecinas. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">col</td><td>Columna de la celda desde la que determinar minas vecinas.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>Numero de minas vecinas de la celda proveida. </dd></dl>
+
+</div>
+</div>
+<a id="a4b5d20758946ccffed2db3465eeba5fb" name="a4b5d20758946ccffed2db3465eeba5fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b5d20758946ccffed2db3465eeba5fb">&#9670;&#160;</a></span>TodasCeldasProcesadas()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool TodasCeldasProcesadas </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#abe6c81774528bfa572de23115c3d999e">Tablero</a></td>          <td class="paramname"><span class="paramname"><em>tablero</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Devuelve la condicion de fin por haber destapado todas las celdas del tablero sin minas, y haber colocado una bandera en todas las celdas con minas. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">tablero</td><td>Array de filas y columnas del que leer datos de celdas.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores devueltos</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>Numero de celdas procesadas es igual a celdas totales. </td></tr>
+    <tr><td class="paramname">false</td><td>Numero de celdas procesadas no es igual a celdas totales. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Documentación de variables</h2>
+<a id="adab99d7b5fdffe30c2106b2396c9006a" name="adab99d7b5fdffe30c2106b2396c9006a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adab99d7b5fdffe30c2106b2396c9006a">&#9670;&#160;</a></span>COL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const unsigned short COL = 8</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Columnas en el tablero. </p>
+
+</div>
+</div>
+<a id="a12b34d2562666bca2f024a37a5509399" name="a12b34d2562666bca2f024a37a5509399"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12b34d2562666bca2f024a37a5509399">&#9670;&#160;</a></span>FIL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const unsigned short FIL = 8</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Filas en el tablero. </p>
+
+</div>
+</div>
+<a id="a32bd7df8393f14d027cb4fd81eb03bc4" name="a32bd7df8393f14d027cb4fd81eb03bc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32bd7df8393f14d027cb4fd81eb03bc4">&#9670;&#160;</a></span>limpiar</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string limpiar = &quot;clear&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Comprueba el sistema en que se ejecuta el programa, y configura el comando para limpiar la pantalla pero no el buffer. </p>
+
+</div>
+</div>
+<a id="a46cd6df5c37c94fd72ac563cf7586281" name="a46cd6df5c37c94fd72ac563cf7586281"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46cd6df5c37c94fd72ac563cf7586281">&#9670;&#160;</a></span>MAX_JUGADORES</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const unsigned short MAX_JUGADORES = 100</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Maximo numero de jugadores. </p>
+
+</div>
+</div>
+<a id="af8b1ad48baef553d39d5dbae3e8167f4" name="af8b1ad48baef553d39d5dbae3e8167f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8b1ad48baef553d39d5dbae3e8167f4">&#9670;&#160;</a></span>MAX_MINAS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const unsigned short MAX_MINAS = 8</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Maximo numero de minas. </p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="main_8cpp.html">main.cpp</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.1 </li>
+  </ul>
+</div>
+</body>
+</html>
