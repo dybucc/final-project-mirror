@@ -126,20 +126,29 @@ void EscribeJugadoresFichero(const VectorJ, unsigned short, ofstream &);
 
 int main(void)
 {
-    char opcion;
-    unsigned short fil,
-                   col,
-                   tam = 0,
-                   intentos = 0;
-    string f_nom;
-    ifstream f_in;
-    ofstream f_out;
-    Jugador jug;
-    VectorJ jugadores;
-    Tablero tablero;
+    char opcion;                    // Opcion elegida en el menu.
+    unsigned short fil,             // Fila auxiliar que proveer a funciones.
+                   col,             // Columna auxiliar que proveer a funciones.
+                   tam = 0,         // Contador de jugadores registrados.
+                   intentos = 0;    // Variable para numero de intentos.
+    string f_nom;                   // Cadena para nombres de archivos.
+    ifstream f_in;                  // Archivos para configuracion y guardado.
+    ofstream f_out;                 // Archivo para guardado de nuevos datos.
+    Jugador jug;                    // Jugador que ha acabado la partida.
+    VectorJ jugadores;              // Informacion de jugadores de archivo.
+    Tablero tablero;                // Informacion de celdas de todo el tablero.
 
+    // Se limpia la terminal de comando para ejectuar el programa.
     system(limpiar.c_str());
 
+    /*
+     *
+     * Logica principal primera; se itera en el menu hasta elegir una opcion
+     * correcta. Al elegir una opcion disponible, se ejecuta la logica
+     * correspondiente. Por cada iteracion del bucle, se comprobara si se ha
+     * llegado a las condiciones de fin mediante la correspondiente funcion.
+     *
+     */
     do
     {
         opcion = Menu();
@@ -149,16 +158,19 @@ int main(void)
         switch (opcion)
         {
             case 'a':
+                // Se obtiene el dato de entrada para el nombre del archivo.
                 cout << "Introduzca el nombre del archivo con las posiciones de"
                     " las minas: ";
                 cin >> f_nom;
 
+                // Se sigue el procedimiento estandar para leer archivos.
                 f_in.open(f_nom);
 
                 if (!f_in)
                     cout << "Ha habido un error abriendo el archivo." << endl;
                 else
                 {
+                    // Se inicializa el tablero con el archivo proveido.
                     InicializaDesdeFichero(tablero, f_in);
 
                     f_in.close();
@@ -166,11 +178,14 @@ int main(void)
 
                 break;
             case 'b':
+                // Se inicializa el tablero de manera aleatoria.
                 InicializaAleatoriamente(tablero);
 
                 break;
             case 'c':
                 LeeCelda(fil, col);
+
+                // Evita repeticion en funcion llamando solo celdas tapadas.
                 if (!tablero[fil][col].destapada)
                 {
                     AbreCelda(tablero, fil, col);
@@ -181,6 +196,7 @@ int main(void)
             case 'd':
                 LeeCelda(fil, col);
 
+                // Evita repeticion en funcion llamando solo celdas no marcadas.
                 if (!tablero[fil][col].bandera)
                     tablero[fil][col].bandera = true;
 
@@ -188,10 +204,12 @@ int main(void)
             case 'e':
                 LeeCelda(fil, col);
 
+                // Evita repeticion en funcion llamando solo celdas marcadas.
                 if (tablero[fil][col].bandera)
                     tablero[fil][col].bandera = false;
         }
 
+        // Se limpian posibles mensajes impresos y se muestra el tablero.
         system(limpiar.c_str());
 
         MuestraTablero(tablero);
@@ -200,29 +218,47 @@ int main(void)
     }
     while (!FinJuego(tablero));
 
+    /*
+     *
+     * Logica principal segunda; el fin del juego llega con dos posibles
+     * condiciones, a las que les corresponden dos posibles mensajes.
+     *
+     */
     if (MinaAbierta(tablero))
         cout << "Se ha encontrado una mina. Fin del juego" << endl;
     else
         cout << "Se han marcado todas las minas. Se ha ganado el juego."
             << endl;
 
+    // Independientemente del resultado, se muestran los intentos.
     cout << "Se ha(n) realizado " << intentos << " intento(s)." << endl << endl;
 
+    /*
+     *
+     * Logica principal tercera; si se ha ganado el juego, se procede a la
+     * lectura de un archivo con jugadores existentes, y al guardado del jugador
+     * que ha terminado la presente partida en el mismo u otro archivo.
+     *
+     */
     if (TodasCeldasProcesadas(tablero))
     {
+        // Se informa de las tareas que se llevaran a cabo.
         cout << "Se han procesado todas las celdas. Se procedera al guardado en"
             " un archivo existente." << endl << endl;
 
+        // Se obtiene dato de entrada para el nombre del archivo de jugadores.
         cout << "Introduzca el nombre del archivo en que hay jugadores "
             "guardados: ";
         cin >> f_nom;
 
         f_in.open(f_nom);
 
+        // Se sigue el procedimiento estandar para la lectura de archivos.
         if (!f_in)
             cout << "Ha habido un error abriendo el archivo.";
         else
         {
+            // Se leen jugadores del fichero proveido en el vector jugadores.
             LeeJugadoresFichero(jugadores, tam, f_in);
             cout << "Se han procesado " << tam << " jugadores del archivo.";
 
@@ -230,8 +266,11 @@ int main(void)
         }
 
         cout << endl << endl;
+
+        // Se obtiene informacion del ganador de la presente partida.
         jug = LeeInfoJugador(intentos);
 
+        // Anade datos del nuevo jugador a aquellos de los jugadores de archivo.
         if (InsertaJugadorVector(jug, jugadores, tam))
             cout << "Jugador insertado correctamente.";
         else
@@ -239,16 +278,19 @@ int main(void)
 
         cout << endl << endl;
 
+        // Se obtiene el dato de entrada para el nombre del archivo de guardado.
         cout << "Introduzca el nombre del archivo en que guardar la informacion"
             " actualizada de los jugadores: ";
         cin >> f_nom;
 
+        // Se sigue el procedimiento estandar para la escritura en archivo.
         f_out.open(f_nom);
 
         if (!f_out)
             cout << "Ha habido un error abriendo el archivo." << endl;
         else
         {
+            // Se escriben los datos de jugadores en el archivo proveido.
             EscribeJugadoresFichero(jugadores, tam, f_out);
 
             f_out.close();
