@@ -704,8 +704,22 @@ void MuestraTablero(const Tablero tablero)
     return;
 }
 
+/**
+ *
+ * Procesa celdas introducidas por teclado por el usuario.
+ *
+ * @param [out] fil Numero de la fila para la celda a leer.
+ * @param [out] col Numero de la columna para la celda a leer.
+ *
+ */
 void LeeCelda(unsigned short & fil, unsigned short & col)
 {
+    /*
+     *
+     * Logica principal; se preguntan datos de la celda hasta obtener un rango
+     * correcto.
+     *
+     */
     do
     {
         cout << "Introduzca el numero de fila:" << endl;
@@ -718,6 +732,14 @@ void LeeCelda(unsigned short & fil, unsigned short & col)
     }
     while (fil < 1 || fil > 8 || col < 1 || col > 8);
 
+    /*
+     *
+     * Para facilitar el procesamiento del programa, y dejar tambien que el
+     * usuario introduzca indices de celdas mas naturales, se restan valores.
+     * Esto es conforme con los indices visuales iniciados en 1 al mostrar el
+     * tablero.
+     *
+     */
     fil--;
     col--;
 
