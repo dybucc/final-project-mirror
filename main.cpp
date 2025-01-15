@@ -383,23 +383,36 @@ void InicializaDesdeFichero(Tablero tablero, ifstream & f)
     return;
 }
 
+/**
+ *
+ * Asigna datos aleatorios a ciertas posiciones de un array tablero. El resto de
+ * posiciones se inicializan con valores por defecto, contrarios a los de las
+ * celdas-minas.
+ *
+ * @param [out] tablero Array de filas y columnas a inicializar.
+ *
+ */
 void InicializaAleatoriamente(Tablero tablero)
 {
+    // Se inicializa la semilla para generar numeros semideterministicos.
     srand(time(NULL));
 
-    unsigned short num_minas = 0,
-                   tmp;
-    Posicion minas_pos;
+    unsigned short num_minas = 0,    // Numero de minas aleatorias.
+                   tmp;              // Variable auxiliar.
+    Posicion minas_pos;              // Posiciones auxiliares de minas.
 
+    // Se itera hasta conseguir un numero de minas no nulo.
     while (num_minas == 0)
         num_minas = rand() % MAX_MINAS + 1;
 
+    // Se inicializan las posiciones auxiliares con valores falsos (0).
     for (int i = 0; i < FIL; i++)
         minas_pos.fil[i] = 0;
 
     for (int i = 0; i < COL; i++)
         minas_pos.col[i] = 0;
 
+    // Itera por cantidad de minas, para obtener minas en posiciones diferentes.
     for (int i = 0; i < num_minas; i++)
     {
         do
@@ -413,6 +426,15 @@ void InicializaAleatoriamente(Tablero tablero)
         minas_pos.col[tmp] = 1;
     }
 
+    /*
+     *
+     * Logica principal; se itera el tablero para inicializar con valores por
+     * defecto todas las celdas cuando no haya posiciones de minas restantes que
+     * colocar. Si hay posiciones de minas que colocar, determinadas por el
+     * valor 1 en su array, se coloca una mina en la posicion correspondiente
+     * del tablero, y se elimina el 1 del array de posiciones de minas.
+     *
+     */
     for (int i = 0; i < FIL; i++)
         for (int j = 0; j < COL; j++)
         {
