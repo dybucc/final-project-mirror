@@ -889,17 +889,36 @@ bool MinaAbierta(const Tablero tablero)
     return abierta;
 }
 
+/**
+ *
+ * Devuelve la condicion de fin por haber destapado todas las celdas del tablero
+ * sin minas, y haber colocado una bandera en todas las celdas con minas.
+ *
+ * @param [in] tablero Array de filas y columnas del que leer datos de celdas.
+ *
+ * @retval true Numero de celdas procesadas es igual a celdas totales.
+ * @retval false Numero de celdas procesadas no es igual a celdas totales.
+ *
+ */
 bool TodasCeldasProcesadas(const Tablero tablero)
 {
-    bool procesadas = false;
-    unsigned short num_procesadas = 0;
+    bool procesadas = false;              // Condicion de fin.
+    unsigned short num_procesadas = 0;    // Contador de celdas procesadas.
 
+    /*
+     *
+     * Logica principal; se recorre el array en busqueda de celdas destapadas o
+     * celdas-minas con banderas. Si ese es el caso, se incrementa el contador
+     * de celdas procesadas.
+     *
+     */
     for (int i = 0; i < FIL; i++)
         for (int j = 0; j < COL; j++)
             if (tablero[i][j].destapada ||
                 tablero[i][j].mina && tablero[i][j].bandera)
                 num_procesadas++;
 
+    // Si el contador de celdas procesadas es igual al total de celdas, fin.
     if (num_procesadas == FIL * COL)
         procesadas = true;
 
