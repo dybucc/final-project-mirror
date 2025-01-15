@@ -1093,9 +1093,24 @@ bool InsertaJugadorVector(Jugador jug, VectorJ jugadores, unsigned short & tam)
     return mem;
 }
 
+/**
+ *
+ * Escribe los datos de un array de jugadores en un archivo de salida.
+ *
+ * @param [in] jugadores Array de jugadores con multiples registros.
+ * @param [in] tam Cantidad de espacios rellenados en el array.
+ * @param [out] f Archivo de salida en el que escribir los datos de jugadores.
+ *
+ */
 void EscribeJugadoresFichero(const VectorJ jugadores, unsigned short tam,
                              ofstream & f)
 {
+    /*
+     *
+     * Logica principal; se recorre el array de jugadores y se escriben los
+     * datos en el mismo formato que el mostrado en el documento de ejemplo.
+     *
+     */
     for (int i = 0; i < tam; i++)
     {
         f << jugadores[i].nombre << endl;
