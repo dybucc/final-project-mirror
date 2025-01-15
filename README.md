@@ -89,6 +89,10 @@ tipos.
 
 ## Changelog
 
+### 0.3.2
+
+- fix(init): corrige posiciones de minas aleatorias
+
 ### 0.3.1
 
 - fix(init): corrige numero de minas aleatorias
