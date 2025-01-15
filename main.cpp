@@ -339,10 +339,28 @@ char Menu(void)
     return opcion;
 }
 
+/**
+ *
+ * Lee datos de un archivo abierto con formato fijo y los escribe en un array de
+ * tablero. Las posiciones del archivo que no estan afectadas se inicializan con
+ * valores por defecto, contrarios a los de las celdas-minas.
+ *
+ * @pre El archivo recibido debe estar abierto; se asume la ausencia de badbit,
+ * failbit y eofbit.
+ *
+ * @pre El archivo debe contener posiciones validas, y un maximo de valores
+ * ajustado al maximo de minas establecido; no se realizara ninguna
+ * comprobacion.
+ *
+ * @param [out] tablero Array de filas y columnas a inicializar.
+ * @param [in] f Archivo de entrada del que leer la informacion.
+ *
+ */
 void InicializaDesdeFichero(Tablero tablero, ifstream & f)
 {
-    string linea;
+    string linea;    // Variable para procesar cada linea del archivo.
 
+    // Se inicializan posiciones del tablero con valores por defecto.
     for (int i = 0; i < FIL; i++)
         for (int j = 0; j < COL; j++)
         {
@@ -352,6 +370,13 @@ void InicializaDesdeFichero(Tablero tablero, ifstream & f)
             tablero[i][j].destapada = false;
         }
 
+    /*
+     *
+     * Logica principal; se asignan datos del archivo a las posiciones
+     * correspondientes del tablero. Se asume un formato fijo de datos en el
+     * archivo.
+     *
+     */
     while (getline(f, linea))
         tablero[linea[0] - '0'][linea[2] - '0'].mina = true;
 
