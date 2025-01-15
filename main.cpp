@@ -65,7 +65,7 @@ void EscribeJugadoresFichero(const VectorJ, unsigned short, ofstream &);
 
 int main(void)
 {
-    char opcion = 'a';
+    char opcion;
     unsigned short fil,
                    col,
                    tam = 0,
