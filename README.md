@@ -89,6 +89,10 @@ tipos.
 
 ## Changelog
 
+### 0.2.0
+
+- feat(juego): modifica indice para procesar celdas
+
 ### 0.1.1
 
 - fix(init): corrige inicializacion de minas
