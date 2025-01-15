@@ -89,6 +89,10 @@ tipos.
 
 ## Changelog
 
+### 0.2.1
+
+- refactor(juego): modifica presentacion del tablero
+
 ### 0.2.0
 
 - feat(juego): modifica indice para procesar celdas
