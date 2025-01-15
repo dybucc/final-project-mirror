@@ -851,10 +851,28 @@ bool FinJuego(const Tablero tablero)
     return fin;
 }
 
+/**
+ *
+ * Devuelve la condicion de fin por existir una celda con mina destapada en el
+ * tablero proveido.
+ *
+ * @param [in] tablero Array de filas y columnas del que leer datos de celdas.
+ *
+ * @retval true No hay ninguna celda-mina destapada.
+ * @retval false Hay una mina destapada.
+ *
+ */
 bool MinaAbierta(const Tablero tablero)
 {
-    bool abierta = false;
+    bool abierta = false;    // Condicion de mina encontrada.
 
+    /*
+     *
+     * Logica principal; se recorre el array tablero hasta encontrar una celda
+     * destapada que contenga una mina. En el momento en que se encuentra, se
+     * para el recorrido.
+     *
+     */
     for (int i = 0; i < FIL; i++)
     {
         for (int j = 0; j < COL; j++)
