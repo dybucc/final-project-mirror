@@ -1014,10 +1014,22 @@ void LeeJugadoresFichero(VectorJ jugadores, unsigned short & tam, ifstream & f)
     return;
 }
 
+/**
+ *
+ * Recoge informacion por teclado del usuario sobre el jugador que ha acabado la
+ * partida.
+ *
+ * @param [in] intentos Numero de jugadas/intentos realizados en la partida.
+ *
+ * @return Estructura de jugador con datos rellenados.
+ *
+ */
 Jugador LeeInfoJugador(unsigned short intentos)
 {
+    // Estructura de jugador con intentos inicializados.
     Jugador jug = { .jugadas = intentos };
 
+    // Logica principal; se preguntan los datos del jugador para la estructura.
     for (int i = 0; i < 2; i++)
     {
         cout << "Introduzca ";
