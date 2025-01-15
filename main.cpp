@@ -527,17 +527,55 @@ unsigned short NumeroMinasVecinas(const Tablero tablero, unsigned short fil,
     return minas;
 }
 
+/**
+ *
+ * Imprime por pantalla la situacion del tablero de valores preinicializados. La
+ * impresion del tablero soporta capacidad para incrementar el numero de filas y
+ * columnas del juego, si asi se desease, aunque esto esta fuera de los
+ * requerimientos del proyecto.
+ *
+ * @pre El tablero debe tener sus valores inicializados; tomar especial atencion
+ * con valores enteros.
+ *
+ * @param [in] tablero Array de filas y columnas del que leer datos.
+ *
+ */
 void MuestraTablero(const Tablero tablero)
 {
+    // Variables auxiliares para la longitud de caracteres de filas y columnas.
     unsigned short esp_fil = to_string(FIL).length(),
                    esp_col = to_string(COL).length();
 
+    /*
+     *
+     * Logica principal; se recorren los valores de todas las filas del tablero
+     * mas una, la inicial, que corresponde a los indices numericos de ayuda
+     * visual para las columnas. Para todo el resto de filas, se imprimen los
+     * indices visuales de filas, y los caracteres correspondientes al estado de
+     * cada celda.
+     *
+     */
     for (int i = 0; i <= FIL; i++)
     {
+        // Si la fila es la primera, se muestran los indices de columnas.
         if (i == 0)
         {
             for (int j = 1; j <= COL; j++)
             {
+                /*
+                 *
+                 * La primera iteracion debe considerar dos tipos de espaciado:
+                 * el siempre presente, i.e. 4 espacios que corresponden a los
+                 * dos guiones de las celdas inferiores, el espacio entre el
+                 * indice visual de filas y la barra vertical del tablero, y el
+                 * espacio entre el borde de la pantalla y el indice visual de
+                 * filas; y el segundo tipo, dependiente de la longitud de
+                 * caracteres del numero de filas que se imprimiran como indices
+                 * visuales; si solo tiene 8 filas, como requiere el proyecto,
+                 * solo se insertara 1 espacio, pero si el tablero tuviese 10
+                 * filas, se insertarian 2 espacios, y asi sucesivamente.
+                 *
+                 */
                 if (j == 1)
                 {
                     cout << "    ";
@@ -546,28 +584,72 @@ void MuestraTablero(const Tablero tablero)
                         cout << ' ';
                 }
 
+                /*
+                 *
+                 * El espaciado entre indices de columnas es de 3 espacios, i.e.
+                 * esto determina el numero de espacios que procesaran los
+                 * contenidos de cada celda tras mostrar el caracter que les
+                 * corresponde. Siempre habra una garantia de que al menos se
+                 * anadiran 3 espacios, y dependiendo de la longitud de
+                 * caracteres del numero de columnas, espacios adicionales se
+                 * anadiran.
+                 *
+                 */
                 cout << j << "   ";
             }
 
             cout << endl;
         }
+        // Si la fila es cualquier otra, se muestran los indices y el tablero.
         else
         {
+            /*
+             *
+             * Similar al mecanismo de espaciado anterior. Se deben contar con
+             * dos tipos de espaciados: el siempre presente, i.e. dos espacios
+             * correspondientes al espacio entre el indice visual y la barra
+             * vertical del tablero, y un espacio entre el borde de la pantalla
+             * y el indice visual; y el tipo de espacio dependiente de la
+             * longitud del numero de caracteres del numero de fila, que de ser
+             * 1 para un tablero de 8 filas, solo anade 1 espacio, pero de ser
+             * un tablero con 10 filas, anade 2 espacios.
+             *
+             */
             cout << "  ";
 
             for (int j = 0; j < esp_fil; j++)
                 cout << ' ';
 
+            /*
+             *
+             * Para computar el numero de guiones necesarios, se considera el
+             * numero de guiones garantizados a imprimirse por celda, i.e. dos
+             * previos a la posicion del indice de columnas, y uno tras el
+             * indice de columnas; y el tipo de espacio dependiente del indice
+             * de columnas, i.e. una proporcion directa con el numero de
+             * caracteres del indice de columnas, por lo que si son 8 columnas,
+             * 1 espacio, pero si son 10 columnas, 2 espacios.
+             *
+             */
             for (int j = 0; j <= FIL * (3 + esp_col); j++)
                 cout << '-';
 
             cout << endl;
 
+            // Se imprime el indice visual correspondiente a las filas.
             cout << ' ' << i;
 
+            /*
+             *
+             * Se aplica la misma logica de espacios que la anterior; se anaden
+             * espacios directamente relacionados con el numero de caracteres
+             * del numero de filas del tablero.
+             *
+             */
             for (int j = 0; j < esp_fil; j++)
                 cout << ' ';
 
+            // Se imprimen los caracteres correspondientes a cada celda.
             for (int j = 0; j < COL; j++)
             {
                 cout << "| ";
@@ -586,6 +668,20 @@ void MuestraTablero(const Tablero tablero)
                 else
                     cout << '.';
 
+                /*
+                 *
+                 * Se anaden tantos espacios como caracteres tenga el numero
+                 * maximo de columnas. Si son 8 columnas, 1 espacio precedara la
+                 * barra vertical de la siguiente celda; si son 10 columnas,
+                 * habra 2 espacios de separacion entre el caracter que designa
+                 * el estado de la celda y la barra vertical de la siguiente
+                 * celda. Este comportamiento no es estetico pero si es
+                 * uniforme; para cada celda, siempre habra un solo espacio
+                 * entre la barra vertical y el estado de la celda, pero un
+                 * numero variable de espacios entre el estado de celda y la
+                 * siguiente barra vertical.
+                 *
+                 */
                 for (int k = 0; k < esp_col; k++)
                     cout << ' ';
             }
@@ -594,6 +690,7 @@ void MuestraTablero(const Tablero tablero)
         }
     }
 
+    // Se repite el procedimiento de espaciado de la primera fila de guiones.
     cout << "  ";
 
     for (int i = 0; i < esp_fil; i++)
