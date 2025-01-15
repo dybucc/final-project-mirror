@@ -89,6 +89,11 @@ tipos.
 
 ## Changelog
 
+### 0.3.1
+
+- fix(init): corrige numero de minas aleatorias
+- style: corrige declaracion para seguir guia
+
 ### 0.3.0
 
 - feat(juego): refina deteccion de minas vecinas
