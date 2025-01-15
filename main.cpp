@@ -584,7 +584,7 @@ void LeeJugadoresFichero(VectorJ jugadores, unsigned short & tam,
 
 Jugador LeeInfoJugador(unsigned short intentos)
 {
-    Jugador jug = { "", 0, 0, 0, intentos };
+    Jugador jug = { .jugadas = intentos };
 
     for (int i = 0; i < 2; i++)
     {
