@@ -11,6 +11,14 @@ detallaba el diseño a seguir.
 
 ## Detalles técnicos sobre la administración del proyecto
 
+### Formato de los archivos fuente
+
+La guía de estilo recomendada desde la universidad no hacía referencia a la
+extensión de caracteres de las líneas. Por ello, se ha tomado la libertad de
+escoger un límite de 80 caracteres, relativo al límite de las terminales de 80
+columnas de ancho. La principal utilidad es la de leer el código rápidamente
+evitando mover mucho los ojos.
+
 ### Versionado
 
 Para el versionado del proyecto, se ha decidido seguir el modelo [SemVer]. Se ha

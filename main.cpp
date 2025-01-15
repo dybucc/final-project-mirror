@@ -88,15 +88,14 @@ int main(void)
         switch (opcion)
         {
             case 'a':
-                cout << "Introduzca el nombre del archivo con las "
-                    "posiciones de las minas: ";
+                cout << "Introduzca el nombre del archivo con las posiciones de"
+                    " las minas: ";
                 cin >> f_nom;
 
                 f_in.open(f_nom);
 
                 if (!f_in)
-                    cout << "Ha habido un error abriendo el archivo."
-                        << endl;
+                    cout << "Ha habido un error abriendo el archivo." << endl;
                 else
                 {
                     InicializaDesdeFichero(tablero, f_in);
@@ -146,12 +145,12 @@ int main(void)
         cout << "Se han marcado todas las minas. Se ha ganado el juego."
             << endl;
 
-    cout << "Se ha(n) realizado " << intentos << " intento(s)." << endl
-        << endl;
+    cout << "Se ha(n) realizado " << intentos << " intento(s)." << endl << endl;
+
     if (TodasCeldasProcesadas(tablero))
     {
-        cout << "Se han procesado todas las celdas. Se procedera al "
-            "guardado en un archivo existente." << endl << endl;
+        cout << "Se han procesado todas las celdas. Se procedera al guardado en"
+            " un archivo existente." << endl << endl;
 
         cout << "Introduzca el nombre del archivo en que hay jugadores "
             "guardados: ";
@@ -164,8 +163,7 @@ int main(void)
         else
         {
             LeeJugadoresFichero(jugadores, tam, f_in);
-            cout << "Se han procesado " << tam << " jugadores del "
-                "archivo.";
+            cout << "Se han procesado " << tam << " jugadores del archivo.";
 
             f_in.close();
         }
@@ -180,8 +178,8 @@ int main(void)
 
         cout << endl << endl;
 
-        cout << "Introduzca el nombre del archivo en que guardar la "
-            "informacion actualizada de los jugadores: ";
+        cout << "Introduzca el nombre del archivo en que guardar la informacion"
+            " actualizada de los jugadores: ";
         cin >> f_nom;
 
         f_out.open(f_nom);
@@ -208,14 +206,11 @@ char Menu(void)
         if (opcion < 'a' || opcion > 'e')
             cout << endl;
 
-        cout << "a. Lee las posiciones de las minas desde fichero."
-            << endl;
-        cout << "b. Genera aleatoriamente las posiciones de las minas."
-            << endl;
-        cout << "c. Descubre celda." << endl;
-        cout << "d. Marca celda como una mina. Anade una bandera."
-            << endl;
-        cout << "e. Desmarca celda como una mina." << endl << endl;
+        cout << "a. Lee las posiciones de las minas desde archivo." << endl;
+        cout << "b. Genera aleatoriamente las posiciones de las minas." << endl;
+        cout << "c. Descubre una celda." << endl;
+        cout << "d. Marca una celda como mina. Anade una bandera." << endl;
+        cout << "e. Desmarca una celda como mina." << endl << endl;
 
         cout << "> ";
         cin >> opcion;
@@ -294,8 +289,7 @@ void InicializaAleatoriamente(Tablero tablero)
     return;
 }
 
-unsigned short NumeroMinasVecinas(const Tablero tablero,
-                                  unsigned short fil,
+unsigned short NumeroMinasVecinas(const Tablero tablero, unsigned short fil,
                                   unsigned short col)
 {
     unsigned short minas = 0;
@@ -510,8 +504,7 @@ bool MinaAbierta(const Tablero tablero)
     for (int i = 0; i < FIL; i++)
     {
         for (int j = 0; j < COL; j++)
-            if (tablero[i][j].mina == true &&
-                tablero[i][j].destapada == true)
+            if (tablero[i][j].mina && tablero[i][j].destapada)
             {
                 abierta = true;
                 break;
@@ -541,8 +534,7 @@ bool TodasCeldasProcesadas(const Tablero tablero)
     return procesadas;
 }
 
-void LeeJugadoresFichero(VectorJ jugadores, unsigned short & tam,
-                         ifstream & f)
+void LeeJugadoresFichero(VectorJ jugadores, unsigned short & tam, ifstream & f)
 {
     string linea;
 
@@ -612,8 +604,7 @@ Jugador LeeInfoJugador(unsigned short intentos)
     return jug;
 }
 
-bool InsertaJugadorVector(Jugador jug, VectorJ jugadores,
-                          unsigned short & tam)
+bool InsertaJugadorVector(Jugador jug, VectorJ jugadores, unsigned short & tam)
 {
     bool mem = false;
 
@@ -631,8 +622,8 @@ bool InsertaJugadorVector(Jugador jug, VectorJ jugadores,
     return mem;
 }
 
-void EscribeJugadoresFichero(const VectorJ jugadores,
-                             unsigned short tam, ofstream & f)
+void EscribeJugadoresFichero(const VectorJ jugadores, unsigned short tam,
+                             ofstream & f)
 {
     for (int i = 0; i < tam; i++)
     {
