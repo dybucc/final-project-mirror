@@ -820,15 +820,31 @@ void AbreCelda(Tablero tablero, unsigned short fil, unsigned short col)
     return;
 }
 
+/**
+ *
+ * Comprueba si la partida jugada ha finalizado mediante dos posibles escenarios
+ * explorados en otras funciones.
+ *
+ * @see MinaAbierta()
+ * @see TodasCeldasProcesadas()
+ *
+ * @param [in] tablero Array de filas y columnas del que leer datos de celdas.
+ *
+ * @retval true Se ha finalizado la partida.
+ * @retval false La partida aun puede continuar.
+ *
+ */
 bool FinJuego(const Tablero tablero)
 {
-    bool mina,
-         proc,
-         fin = false;
+    bool mina,           // Condicion de mina destapada.
+         proc,           // Condicion de tablero completo procesado.
+         fin = false;    // Condicion de fin; modificada si corresponde.
 
+    // Se comprueba si alguno de los posibles finales se ha alcanzado.
     mina = MinaAbierta(tablero);
     proc = TodasCeldasProcesadas(tablero);
 
+    // Si algun final se ha alcanzado, se modifica el valor de retorno absoluto.
     if (mina || proc)
         fin = true;
 
