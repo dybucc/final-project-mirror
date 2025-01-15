@@ -1,3 +1,23 @@
+/**
+ *
+ * @file main.cpp
+ *
+ * @brief
+ *
+ * Permite jugar al buscaminas en un tablero fijo, pero variable en el programa,
+ * de 8x8.
+ *
+ * Datos de entrada: nombres de archivos: cadenas de caracteres; opcion de menu:
+ * caracter; valores de celdas: enteros positivos pequenos.
+ *
+ * Datos de salida: tablero: caracteres, enteros positivos pequenos; menu,
+ * mensajes finales: cadenas de caracteres.
+ *
+ * @author Adam Martinez
+ * @date 01/15/2025
+ *
+ */
+
 #include <cstdlib>
 #include <ctime>
 #include <fstream>
@@ -6,45 +26,86 @@
 
 using namespace std;
 
+/**
+ *
+ * Comprueba el sistema en que se ejecuta el programa, y configura el comando
+ * para limpiar la pantalla pero no el buffer.
+ *
+ */
 #ifdef _WIN32
     const string limpiar = "cls";
 #else
     const string limpiar = "clear";
 #endif
 
+/**
+ *
+ * Estructura para registrar fechas en cualquier formato, con los datos de dia,
+ * mes y anyo.
+ *
+ */
 struct Fecha
 {
-    unsigned short mes;
-    unsigned short dia;
-    unsigned short anyo;
+    unsigned short mes;     ///< Mes de la fecha.
+    unsigned short dia;     ///< Dia de la fecha.
+    unsigned short anyo;    ///< Anyo de la fecha.
 };
 
+/**
+ *
+ * Estructura para almacenar datos particulares de cada jugador.
+ *
+ */
 struct Jugador
 {
-    string nombre;
-    Fecha nacimiento;
-    unsigned short jugadas;
+    string nombre;             ///< Nombre del jugador.
+    Fecha nacimiento;          ///< Fecha de nacimiento del jugador.
+    unsigned short jugadas;    ///< Numero de intentos realizados en la partida.
 };
 
+/**
+ *
+ * Estructura para guardar el estado de cada celda del tablero.
+ *
+ */
 struct Estado
 {
-    unsigned short n_minas;
-    bool mina;
-    bool destapada;
-    bool bandera;
+    unsigned short n_minas;    ///< Numero de minas vecinas a la celda.
+    bool mina;                 ///< Propiedad de celda conteniendo mina.
+    bool destapada;            ///< Propiedad de celda destapada.
+    bool bandera;              ///< Propiedad de celda marcada con bandera.
 };
 
-const unsigned short MAX_MINAS = 8;
-const unsigned short MAX_JUGADORES = 100;
-const unsigned short FIL = 8;
-const unsigned short COL = 8;
+const unsigned short MAX_MINAS = 8;          ///< Maximo numero de minas.
+const unsigned short MAX_JUGADORES = 100;    ///< Maximo numero de jugadores.
+const unsigned short FIL = 8;                ///< Filas en el tablero.
+const unsigned short COL = 8;                ///< Columnas en el tablero.
+
+/**
+ *
+ * Array en que almacenar los datos de todos los jugadores, siendo 100 el
+ * maximo.
+ *
+ */
 typedef Jugador VectorJ[MAX_JUGADORES];
+/**
+ *
+ * Array en que representar el estado del tablero, con datos particulares a cada
+ * celda.
+ *
+ */
 typedef Estado Tablero[FIL][COL];
 
+/**
+ *
+ * Estructura para guardar temporalmente las posiciones de celdas; auxiliar a
+ * ciertas funciones de cambio de celdas mayores a 1.
+ *
+ */
 struct Posicion
 {
-    unsigned short fil[FIL];
-    unsigned short col[COL];
+    unsigned short fil[FIL];    ///< Valor auxiliar para cada fila.
+    unsigned short col[COL];    ///< Valor auxiliar para cada columna.
 };
 
 char Menu(void);
