@@ -146,11 +146,10 @@ int main(void)
         cout << "Se han marcado todas las minas. Se ha ganado el juego."
             << endl;
 
-    cout << "Se ha(n) realizado " << intentos << " intento(s)." << endl;
-
+    cout << "Se ha(n) realizado " << intentos << " intento(s)." << endl
+        << endl;
     if (TodasCeldasProcesadas(tablero))
     {
-        cout << endl;
         cout << "Se han procesado todas las celdas. Se procedera al "
             "guardado en un archivo existente." << endl << endl;
 
@@ -161,25 +160,26 @@ int main(void)
         f_in.open(f_nom);
 
         if (!f_in)
-            cout << "Ha habido un error abriendo el archivo." << endl;
+            cout << "Ha habido un error abriendo el archivo.";
         else
         {
             LeeJugadoresFichero(jugadores, tam, f_in);
             cout << "Se han procesado " << tam << " jugadores del "
-                "archivo." << endl << endl;
+                "archivo.";
 
             f_in.close();
         }
 
+        cout << endl << endl;
         jug = LeeInfoJugador(intentos);
 
         if (InsertaJugadorVector(jug, jugadores, tam))
-            cout << "Jugador insertado correctamente." << endl;
+            cout << "Jugador insertado correctamente.";
         else
-            cout << "Memoria insuficiente para insertar jugador."
-                << endl;
+            cout << "Memoria insuficiente para insertar jugador.";
 
-        cout << endl;
+        cout << endl << endl;
+
         cout << "Introduzca el nombre del archivo en que guardar la "
             "informacion actualizada de los jugadores: ";
         cin >> f_nom;
