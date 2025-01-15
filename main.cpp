@@ -508,10 +508,18 @@ bool MinaAbierta(const Tablero tablero)
     bool abierta = false;
 
     for (int i = 0; i < FIL; i++)
+    {
         for (int j = 0; j < COL; j++)
             if (tablero[i][j].mina == true &&
                 tablero[i][j].destapada == true)
+            {
                 abierta = true;
+                break;
+            }
+
+        if (abierta)
+            break;
+    }
 
     return abierta;
 }
