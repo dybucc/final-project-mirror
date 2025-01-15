@@ -89,6 +89,10 @@ tipos.
 
 ## Changelog
 
+### 0.3.6
+
+- fix(juego): corrige inicializacion necesaria
+
 ### 0.3.5
 
 - refactor(juego): elimina inicializacion variable
