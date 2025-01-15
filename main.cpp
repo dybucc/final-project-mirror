@@ -300,10 +300,26 @@ int main(void)
     return 0;
 }
 
+/**
+ *
+ * Devuelve la opcion elegida de un menu. El menu ofrece la capacidad para
+ * cargar minas desde archivo, cargar minas aleatoriamente, descubrir celdas de
+ * un tablero inicializado, anadir banderas a celdas, y desmarcar banderas de
+ * celdas.
+ *
+ * @return Caracter introducido por el usuario con la opcion elegida.
+ *
+ */
 char Menu(void)
 {
-    char opcion = 'a';
+    char opcion = 'a';    // Opcion a elegir; inicializada por el formato.
 
+    /*
+     *
+     * Logica principal; si una opcion ya esta fuera de rango, se inserta salto
+     * de linea (formato) y se itera hasta obtener una opcion correcta.
+     *
+     */
     do
     {
         if (opcion < 'a' || opcion > 'e')
