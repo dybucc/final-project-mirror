@@ -2,3 +2,11 @@ a.out
 a.exe
 minesweeper
 minesweeper.exe
+manual/main.log
+manual/main.out
+manual/main.toc
+manual/main.aux
+manual/main.pdf
+manual/_minted/**
+manual/main.fdb_latexmk
+manual/main.fls
