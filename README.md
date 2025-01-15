@@ -89,6 +89,10 @@ tipos.
 
 ## Changelog
 
+### 0.3.14
+
+- refactor(fin): cambia tipo de tamano de intentos
+
 ### 0.3.13
 
 - refactor: hace constante variable global
