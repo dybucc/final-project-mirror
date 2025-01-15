@@ -746,12 +746,41 @@ void LeeCelda(unsigned short & fil, unsigned short & col)
     return;
 }
 
+/**
+ *
+ * Modifica el estado de posiciones de un array tablero. Explora recursivamente
+ * las celdas vecinas si estas no estan en contacto con posiciones que contengan
+ * minas. Utiliza una logica similar al algoritmo flood-fill en 8 direcciones.
+ *
+ * @pre El tablero debe tener sus valores inicializados; tomar especial atencion
+ * con valores enteros.
+ *
+ * @param [in, out] tablero Array del que leer y modificar estados de celda(s).
+ * @param [in] fil Numero de fila para la celda desde la que explorar.
+ * @param [in] col Numero de columna para la celda desde la que explorar.
+ *
+ */
 void AbreCelda(Tablero tablero, unsigned short fil, unsigned short col)
 {
+    // Se destapa la posicion del tablero automaticamente.
     tablero[fil][col].destapada = true;
 
+    // Se consulta el numero de minas vecinas de la celda por iteracion.
     tablero[fil][col].n_minas = NumeroMinasVecinas(tablero, fil, col);
 
+    /*
+     *
+     * Logica principal; si no hay minas alrededor, se procede a comprobar
+     * colisiones en 8 direcciones. Las colisiones se comprueban por un orden
+     * que permite cortocircuitar la expresion booleana si un requerimiento
+     * basico no se cumple. Si la celda es explorable porque existe, relativa a
+     * la celda con la que la iteracion esta trabajando, se pasa a comprobar si
+     * tiene minas vecinas, y si ese no es el caso, si no esta tapada. A notar
+     * es la comprobacion por minas vecinas previo a la nueva llamada recursiva;
+     * parece redundante, pero asegura no revelar celdas que tengan contacto con
+     * minas, lo que permite que el juego no sea tan sencillo.
+     *
+     */
     if (tablero[fil][col].n_minas == 0)
     {
         if (fil - 1 >= 0 && col - 1 >= 0 &&
