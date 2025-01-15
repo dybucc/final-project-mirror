@@ -11,6 +11,13 @@ detallaba el diseño a seguir.
 
 ## Detalles técnicos sobre la administración del proyecto
 
+### Archivos necesarios para la ejecución del programa
+
+Los archivos de configuración de minas y de información de jugadores existentes
+se han trasladado a la carpeta `./doc/eg`. Si se desea comprobar el
+funcionamiento del programa, se deberán copiar a la carpeta donde reside el
+archivo fuente del programa.
+
 ### Formato de los archivos fuente
 
 La guía de estilo recomendada desde la universidad no hacía referencia a la
