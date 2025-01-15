@@ -89,6 +89,11 @@ tipos.
 
 ## Changelog
 
+### 0.1.1
+
+- fix(init): corrige inicializacion de minas
+- style: corrige errata en opcion de menu
+
 ### 0.1.0
 
 - Versión inicial de desarrollo
