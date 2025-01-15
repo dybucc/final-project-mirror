@@ -89,6 +89,10 @@ tipos.
 
 ## Changelog
 
+### 0.3.21
+
+- refactor(init): modifica procesamiento auxiliar
+
 ### 0.3.20
 
 - refactor(juego): elimina valor innecesario
