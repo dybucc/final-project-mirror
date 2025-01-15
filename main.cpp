@@ -925,14 +925,57 @@ bool TodasCeldasProcesadas(const Tablero tablero)
     return procesadas;
 }
 
+/**
+ *
+ * Lee jugadores de un archivo de entrada de formato fijo, y almacena los datos
+ * encontrados en un array de jugadores.
+ *
+ * @pre El archivo recibido debe estar abierto; se asume que no hay ningun
+ * badbit, failbit o eofbit.
+ *
+ * @pre El archivo debe contener un numero de jugadores en el rango 0-100 para
+ * evitar que el vector no recoja todos los jugadores. Los datos de los
+ * jugadores tambien deben ser conformes con los datos del archivo de ejemplo;
+ * no se realizara ninguna comprobacion.
+ *
+ * @param [out] jugadores Array de jugadores en el que escribir datos.
+ * @param [out] tam Tamano del array rellenado con los jugadores del archivo.
+ * @param [in] f Archivo de entrada con jugadores existentes.
+ *
+ */
 void LeeJugadoresFichero(VectorJ jugadores, unsigned short & tam, ifstream & f)
 {
-    string linea;
+    string linea;    // Variable para procesar lineas del archivo.
 
+    /*
+     *
+     * Logica principal; se procesan lineas, que se asumen estar en el formato
+     * estandar dado con los documentos de ejemplo. Se aprovechan
+     * caracteristicas de cada linea de datos para procesar diferentes tipos. Al
+     * final de cada set de 3 lineas, se incrementa el tamano del array.
+     *
+     */
     while (getline(f, linea))
     {
+        /*
+         *
+         * Si el primer caracter de la linea coincide con un caracter de letras
+         * ASCII, se asume que se trata del nombre del jugador. Todo nombre de
+         * jugador se espera en minuscula, de acuerdo con el documento de
+         * ejemplo.
+         *
+         */
         if (linea[0] >= 'a' && linea[0] <= 'z')
             jugadores[tam].nombre = linea;
+        /*
+         *
+         * Si la linea contiene algun espacio, debe ser la fecha, puesto que
+         * cada elemento esta separado por espacios, de acuerdo al documento de
+         * ejemplo. En ese caso, se procesan datos hasta el primer espacio
+         * encontrado en la cadena de la linea, y se elimina ese mismo rango de
+         * la cadena tras alamacenarlo.
+         *
+         */
         else if (linea.find(' ') != linea.npos)
             for (int i = 0; i < 3; i++)
             {
@@ -955,6 +998,12 @@ void LeeJugadoresFichero(VectorJ jugadores, unsigned short & tam, ifstream & f)
                 if (linea.find(' ') != linea.npos)
                     linea.erase(0, linea.find(' ') + 1);
             }
+        /*
+         *
+         * El unico otro caso es el de el numero de jugadas, que no contiene
+         * letras ni espacios, de acuerdo al documento de ejemplo.
+         *
+         */
         else
         {
             jugadores[tam].jugadas = stoi(linea);
