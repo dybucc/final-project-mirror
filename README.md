@@ -89,6 +89,10 @@ tipos.
 
 ## Changelog
 
+### 0.3.11
+
+- refactor(fin): elimina bucle innecesario
+
 ### 0.3.10
 
 - refactor(fin): modifica lectura nombre jugador
