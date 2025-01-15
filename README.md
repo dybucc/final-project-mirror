@@ -89,6 +89,10 @@ tipos.
 
 ## Changelog
 
+### 0.3.0
+
+- feat(juego): refina deteccion de minas vecinas
+
 ### 0.2.1
 
 - refactor(juego): modifica presentacion del tablero
