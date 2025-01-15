@@ -89,6 +89,11 @@ tipos.
 
 ## Changelog
 
+### 0.3.19
+
+- refactor(juego): elimina limpieza final terminal
+- sytle: modifica orden de saltos de linea
+
 ### 0.3.18
 
 - refactor(juego): condiciona (des)marcado de celdas
