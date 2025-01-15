@@ -89,6 +89,10 @@ tipos.
 
 ## Changelog
 
+### 0.3.7
+
+- refactor(juego): modifica condicion de procesado
+
 ### 0.3.6
 
 - fix(juego): corrige inicializacion necesaria
