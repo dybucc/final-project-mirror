@@ -89,6 +89,11 @@ tipos.
 
 ## Changelog
 
+### 0.3.13
+
+- refactor: hace constante variable global
+- style: reordena headers por orden alfabetico
+
 ### 0.3.12
 
 - refactor(fin): modifica escritura de jugadores
