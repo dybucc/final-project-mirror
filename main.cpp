@@ -256,10 +256,10 @@ void InicializaAleatoriamente(Tablero tablero)
         num_minas = rand() % MAX_MINAS + 1;
 
     for (int i = 0; i < FIL; i++)
-    {
         minas_pos.fil[i] = 0;
+
+    for (int i = 0; i < COL; i++)
         minas_pos.col[i] = 0;
-    }
 
     for (int i = 0; i < num_minas; i++)
     {
