@@ -89,6 +89,11 @@ tipos.
 
 ## Changelog
 
+### 0.3.8
+
+- fix(fin): corrige rango de nombres de jugador
+- style: modifica nombre de un registro de partida
+
 ### 0.3.7
 
 - refactor(juego): modifica condicion de procesado
