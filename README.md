@@ -125,6 +125,33 @@ tipos.
 
 ## Changelog
 
+### 1.0.0
+
+- docs: configura estructura y archivos de doxygen
+- docs(fin): anade documentacion escritura jugadores
+- docs(fin): anade documentacion insercion jugadores
+- docs(fin): anade documentacion lectura datos
+- docs(fin): anade documentacion lectura jugadores
+- docs(juego): anade documentacion de fin procesado
+- docs(juego): anade documentacion de fin por minas
+- docs(juego): anade documentacion de fin del juego
+- docs(juego): anade documentacion apertura de celda
+- docs(juego): anade documentacion de lectura celdas
+- docs(juego): anade documentacion impresion tablero
+- docs(juego): anade documentacion deteccion de mina
+- docs(init): anade documentacion de init aleatoria
+- docs(init): anade documentacion de init archivo
+- docs(juego): anade documentacion de menu
+- docs: anade documentacion en funcion principal
+- docs: anade documentacion de elementos iniciales
+- build: anade compilacion automatica de memoria
+- chore(git): ignora archivos no-fuente de memoria
+- docs: anade documentacion de memoria de proyecto
+- chore(git): cambia tratamiento de archivos ejemplo
+- chore(git): anade nombres de binarios a ignorar
+- style: modifica columnas por linea a 80
+- style: modifica alineacion particular de comandos
+
 ### 0.3.23
 
 - refactor(fin): modifica inicializacion de registro
