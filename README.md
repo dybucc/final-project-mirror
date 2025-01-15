@@ -89,6 +89,10 @@ tipos.
 
 ## Changelog
 
+### 0.3.4
+
+- fix(juego): corrige exploracion de celdas vecinas
+
 ### 0.3.3
 
 - fix(init): corrige numero de minas finales
