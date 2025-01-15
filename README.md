@@ -89,6 +89,10 @@ tipos.
 
 ## Changelog
 
+### 0.3.18
+
+- refactor(juego): condiciona (des)marcado de celdas
+
 ### 0.3.17
 
 - fix(juego): modifica suma de intentos
