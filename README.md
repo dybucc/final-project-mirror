@@ -9,6 +9,18 @@ detallaba el diseño a seguir.
 
 ---
 
+## Sobre el documento a entregar
+
+La memoria a entregar se ha construido con el archivo fuente del documento PDF
+en el directorio `./manual`. No se han proveído instrucciones de compilación
+local debido al uso de una flag insegura al compilar con el sistema LaTeX.
+
+Para obtener el PDF precompilado, se puede acceder al último [build job] del
+mirror del repositorio en GitHub, o se puede acceder al mismo desde la
+plataforma de AulaVirtual en la tarea correspondiente.
+
+---
+
 ## Detalles técnicos sobre la administración del proyecto
 
 ### Archivos necesarios para la ejecución del programa
@@ -231,6 +243,7 @@ licencia.
 
 <!-- Links -->
 
+[build job]: https://github.com/dybucc/final-project-mirror/actions/workflows/build-latex.yml
 [semver]: https://semver.org/
 [conventional commits]: https://www.conventionalcommits.org/en/v1.0.0/
 [github gist]: https://gist.github.com/qoomon/5dfcdf8eec66a051ecd85625518cfd13
