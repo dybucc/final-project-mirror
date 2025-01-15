@@ -89,6 +89,10 @@ tipos.
 
 ## Changelog
 
+### 0.3.23
+
+- refactor(fin): modifica inicializacion de registro
+
 ### 0.3.22
 
 - refactor(juego): modifica comprobacion final minas
