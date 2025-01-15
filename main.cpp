@@ -455,12 +455,30 @@ void InicializaAleatoriamente(Tablero tablero)
     return;
 }
 
+/**
+ *
+ * Devuelve el numero de celdas vecinas que contienen una mina en un array
+ * tablero.
+ *
+ * @param [in] tablero Array de filas y columnas del que leer datos de celdas.
+ * @param [in] fil Fila de la celda desde la que determinar minas vecinas.
+ * @param [in] col Columna de la celda desde la que determinar minas vecinas.
+ *
+ * @return Numero de minas vecinas de la celda proveida.
+ *
+ */
 unsigned short NumeroMinasVecinas(const Tablero tablero, unsigned short fil,
                                   unsigned short col)
 {
-    unsigned short minas = 0;
-    Posicion pos;
+    unsigned short minas = 0;    // Numero de posibles minas vecinas.
+    Posicion pos;                // Rangos posibles de celdas a explorar.
 
+    /*
+     *
+     * Dependiendo de la posicion de la celda proveida, solo sera posible
+     * explorar unos rangos u otros a su alrededor.
+     *
+     */
     switch (fil)
     {
         case 0:
@@ -495,6 +513,12 @@ unsigned short NumeroMinasVecinas(const Tablero tablero, unsigned short fil,
             pos.col[1] = col + 1;
     }
 
+    /*
+     *
+     * Logica principal; se recorren los rangos determinados previamente, y se
+     * exceptua la iteracion que coincide con la fila y columna proveida.
+     *
+     */
     for (int i = pos.fil[0]; i <= pos.fil[1]; i++)
         for (int j = pos.col[0]; j <= pos.col[1]; j++)
             if (tablero[i][j].mina && (i != fil || j != col))
