@@ -89,6 +89,11 @@ tipos.
 
 ## Changelog
 
+### 0.3.17
+
+- fix(juego): modifica suma de intentos
+- style: cambia orden de funciones
+
 ### 0.3.16
 
 - refactor(init): modifica nombre de inicializacion
