@@ -89,6 +89,10 @@ tipos.
 
 ## Changelog
 
+### 0.3.16
+
+- refactor(init): modifica nombre de inicializacion
+
 ### 0.3.15
 
 - refactor(juego): aclara parametros de funcion menu
