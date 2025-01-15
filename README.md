@@ -89,6 +89,10 @@ tipos.
 
 ## Changelog
 
+### 0.3.9
+
+- fix(fin): corrige lectura de datos desde archivo
+
 ### 0.3.8
 
 - fix(fin): corrige rango de nombres de jugador
