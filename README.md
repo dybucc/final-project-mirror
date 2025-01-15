@@ -89,6 +89,10 @@ tipos.
 
 ## Changelog
 
+### 0.3.20
+
+- refactor(juego): elimina valor innecesario
+
 ### 0.3.19
 
 - refactor(juego): elimina limpieza final terminal
