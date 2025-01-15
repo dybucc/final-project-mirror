@@ -1,0 +1,996 @@
+\documentclass[12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref, microtype, enumitem, titling, newtxtext, newtxmath, tikz}
+\usepackage[section]{minted}
+\usepackage[scaled=0.85]{beramono}
+\usepackage[spanish]{babel}
+\usepackage[margin=1in]{geometry}
+
+\usetikzlibrary{shapes, arrows}
+
+\tikzstyle{terminator} = [rectangle, draw, text centered, rounded corners]
+\tikzstyle{process} = [rectangle, draw, text centered]
+\tikzstyle{junction} = [circle, draw, minimum height=1em]
+\tikzstyle{decision} = [diamond, draw, text centered]
+\tikzstyle{data} = [trapezium, draw, text centered, trapezium left angle=60,
+                    trapezium right angle=120]
+\tikzstyle{connector} = [draw, -latex']
+
+\title{Memoria --- Proyecto final\\
+\bigskip
+\large Informática --- GIM}
+\author{Adam Martínez Oussat}
+\date{2024-2025}
+
+\begin{document}
+
+\maketitle
+
+\pagenumbering{gobble}
+
+\tableofcontents
+
+\clearpage
+
+\pagenumbering{arabic}
+
+\section*{Notas}
+\addcontentsline{toc}{section}{Notas}
+
+Los tipos de las variables empleadas en los bucles \mintinline{cpp}{for} no se
+han documentado.
+
+Puesto que algunas funciones implementadas requieren cierta explicación, se ha
+valorado añadir un comentario expandido de los incluidos en la documentación de
+Doxygen del archivo fuente.
+
+Las partes del código utilizadas para procesar archivos se han excluido del
+diagrama de flujo de la función principal.
+
+\section*{Definiciones de tipos}
+\addcontentsline{toc}{section}{Definiciones de tipos}
+
+\subsection*{Estructuras}
+\addcontentsline{toc}{subsection}{Estructuras}
+
+\subsubsection*{\mintinline{cpp}{Fecha}}
+\addcontentsline{toc}{subsubsection}{\mintinline{cpp}{Fecha}}
+
+\begin{itemize}
+
+\item \mintinline{cpp}{unsigned short mes}. El número de meses siempre está en
+el rango 1-12. El rango del tipo seleccionado basta.
+
+\item \mintinline{cpp}{unsigned short dia}. El número de días siempre está en el
+rango 1-31. El rango del tipo seleccionado basta.
+
+\item \mintinline{cpp}{unsigned short anyo}. El número de años siempre cubre
+cifras de 4. El rango del tipo seleccionado basta.
+
+\end{itemize}
+
+\subsubsection*{\mintinline{cpp}{Jugador}}
+\addcontentsline{toc}{subsubsection}{\mintinline{cpp}{Jugador}}
+
+\begin{itemize}
+
+\item \mintinline{cpp}{std::string nombre}. Se ha utilizado una cadena porque
+debe contener múltiples caracteres del alfabeto.
+
+\item \mintinline{cpp}{Fecha nacimiento}. Se ha empleado la estructura de datos
+\mintinline{cpp}{Fecha}, porque debe contener meses, días y años.
+
+\item \mintinline{cpp}{unsigned short jugadas}. Se ha empleado un entero
+positivo pequeño, porque el máximo de jugadas siempre será inferior al número de
+celdas totales o área del tablero, y ésta asimismo solo puede ser 64 de acuerdo
+al documento especificativo.
+
+\end{itemize}
+
+\subsubsection*{\mintinline{cpp}{Estado}}
+\addcontentsline{toc}{subsubsection}{\mintinline{cpp}{Estado}}
+
+\begin{itemize}
+
+\item \mintinline{cpp}{unsigned short n_minas}. El máximo número de minas solo
+puede ser 8, de acuerdo al documento especificativo, y este rango se puede
+cubrir con un entero positivo pequeño.
+
+\item \mintinline{cpp}{bool mina}. Debe comprobar la condición de mina en una
+celda, por tanto un valor booleano.
+
+\item \mintinline{cpp}{bool destapada}. Debe comprobar si una mina ha sido
+destapada por el usuario o una acción del usuario, con lo que un valor booleano.
+
+\item \mintinline{cpp}{bool bandera}. Debe comprobar si una mina está marcada
+con una bandera, por lo que un valor booleano.
+
+\end{itemize}
+
+\subsubsection*{\mintinline{cpp}{Posicion}}
+\addcontentsline{toc}{subsubsection}{\mintinline{cpp}{Posicion}}
+
+\begin{itemize}
+
+\item \mintinline{cpp}{unsigned short fil[]}. Almacena valores auxiliares en los
+rangos 0-8. El tipo utilizado basta.
+
+\item \mintinline{cpp}{unsigned short col[]}. Almacena valores auxiliares en los
+rangos 0-8. El tipo utilizado basta.
+
+\end{itemize}
+
+\subsection*{Constantes}
+\addcontentsline{toc}{subsection}{Constantes}
+
+\begin{itemize}
+
+\item \mintinline{cpp}{std::string limpiar}. El comando para limpiar la terminal
+del sistema está compuesto de múltiples caracteres. Este tipo es necesario.
+
+\item \mintinline{cpp}{unsigned short MAX_MINAS}. De acuerdo con el documento
+especificativo del proyecto, debe ser 8, un rango cubierto por este tipo.
+
+\item \mintinline{cpp}{unsigned short MAX_JUGADORES}. De acuerdo con el
+documento especificativo, debe ser 100, un rango cubierto por este tipo.
+
+\item \mintinline{cpp}{unsigned short FIL}. De acuerdo con el documento
+especificativo, debe ser 8, un rango cubierto por este tipo.
+
+\item \mintinline{cpp}{unsigned short COL}. De acuerdo con el documento
+especificativo, debe ser 8, un rango cubierto por este tipo.
+
+\end{itemize}
+
+\subsection*{Definiciones de tipos compuestos}
+\addcontentsline{toc}{subsection}{Definiciones de tipos compuestos}
+
+\begin{itemize}
+
+\item \mintinline{cpp}{Jugador VectorJ[]}. El array debe contener datos de
+múltiples jugadores, por lo que se emplea la estructura de
+\mintinline{cpp}{Jugador} para cada elemento.
+
+\item \mintinline{cpp}{Estado Tablero[][]}. El tablero debe estar compuesto por
+una matriz designada por el número de filas y columnas, y cada elemento debe
+tener una descripción particular con todos los campos de la estructura.
+
+\end{itemize}
+
+\subsection*{Funciones}
+\addcontentsline{toc}{subsection}{Funciones}
+
+\subsubsection*{\mintinline{cpp}{main()}}
+\addcontentsline{toc}{subsubsection}{\mintinline{cpp}{main()}}
+
+\begin{itemize}
+
+\item \mintinline{cpp}{char opcion}. Solo se debe elegir entre un rango de
+múltiples letras en el menú. Para ello, caracteres individuales bastan.
+
+\item \mintinline{cpp}{unsigned short fil}. Se utiliza para almacenar el número
+de fila obtenido como dato de entrada del usuario. De acuerdo al documento
+especificativo, solo se juega con 8 filas, con lo que este tipo basta.
+
+\item \mintinline{cpp}{unsigned short col}. Se utiliza para almacenar el número
+de columna obtenido como dato de entrada del usuario. De acuerdo al documento
+especificativo, solo se juega con 8 columnas, con lo que este tipo basta.
+
+\item \mintinline{cpp}{unsigned short tam}. El tamaño del array solo ascendará
+al máximo establecido en el documento especificativo. Este máximo puede ser
+cubierto por el rango del tipo.
+
+\item \mintinline{cpp}{unsigned short intentos}. El número de intentos siempre
+será inferior al número de celdas totales. El número de celdas totales será 64,
+de acuerdo con el documento especificativo, por lo que el tipo basta.
+
+\item \mintinline{cpp}{std::string f_nom}. Almacena el nombre de archivos a
+abrir o crear. De acuerdo con los documentos de ejemplo, los nombres de archivos
+están compuestos de múltiples caracteres. Este tipo es necesario.
+
+\item \mintinline{cpp}{std::ifstream f_in}. El flujo de los archivos de entrada
+es necesario.
+
+\item \mintinline{cpp}{std::ofstream f_out}. El flujo de los archivos de salida
+es necesario.
+
+\item \mintinline{cpp}{Jugador jug}. Se deben almacenar datos del jugador de la
+última partida. De acuerdo con el documento especificativo, estos datos se
+detallan en la estructura correspondiente.
+
+\item \mintinline{cpp}{VectorJ jugadores}. Los datos de todos los jugadores
+deben almacenarse de acuerdo con los datos de los archivos de ejemplo. El
+documento especificativo requiere una estructura de jugadores para cada
+elemento.
+
+\item \mintinline{cpp}{Tablero tablero}. El tablero debe estar compuesto de
+múltiples celdas con datos particulares. Para cada celda, el documento
+especificativo detalla los datos de una estructura necesarios.
+
+\end{itemize}
+
+\subsubsection*{\mintinline{cpp}{Menu()}}
+\addcontentsline{toc}{subsubsection}{\mintinline{cpp}{Menu()}}
+
+\begin{itemize}
+
+\item \mintinline{cpp}{char opcion}. Solo se debe elegir entre un rango de
+múltiples letras en el menú. Para ello, caracteres individuales bastan.
+
+\end{itemize}
+
+\subsubsection*{\mintinline{cpp}{InicializaDesdeFichero()}}
+\addcontentsline{toc}{subsubsection}{\mintinline{cpp}{InicializaDesdeFichero()}}
+
+\begin{itemize}
+
+\item \mintinline{cpp}{std::string linea}. La lógica de la función procesa
+cada línea del archivo. Para ello, se deben almacenar todos los caracteres de la
+línea. Este tipo es necesario.
+
+\end{itemize}
+
+\subsubsection*{\mintinline{cpp}{InicializaAleatoriamente()}}
+\addcontentsline{toc}{subsubsection}{%
+\mintinline{cpp}{InicializaAleatoriamente()}}
+
+\begin{itemize}
+
+\item \mintinline{cpp}{unsigned short num_minas}. El número máximo de minas solo
+será 8, de acuerdo con el documento especificaivo. El rango de este tipo basta.
+
+\item \mintinline{cpp}{unsigned short tmp}. Solo se emplean valores auxiliares
+en el rango 0-8, por lo que el tipo empleado basta.
+
+\item \mintinline{cpp}{Posicion minas_pos}. Se utilizan valores binarios de 0s y
+1s. Los tipos de la estructura empleada bastan.
+
+\end{itemize}
+
+\subsubsection*{\mintinline{cpp}{NumeroMinasVecinas()}}
+\addcontentsline{toc}{subsubsection}{\mintinline{cpp}{NumeroMinasVecinas()}}
+
+\begin{itemize}
+
+\item \mintinline{cpp}{unsigned short minas}. El número de posibles minas
+aleatorias está en el rango 0-8. El tipo seleccionado basta.
+
+\item \mintinline{cpp}{Posicion pos}. Se utilizan valores auxiliares en el rango
+0-8. El rango del tipo seleccionado basta.
+
+\end{itemize}
+
+\subsubsection*{\mintinline{cpp}{MuestraTablero()}}
+\addcontentsline{toc}{subsubsection}{\mintinline{cpp}{MuestraTablero()}}
+
+\begin{itemize}
+
+\item \mintinline{cpp}{unsigned short esp_fil}. El número empleado siempre será
+mayor a 1. Según el documento especificativo, el valor siempre será 1. El tipo
+selecccionado tiene un rango suficiente.
+
+\item \mintinline{cpp}{unsigned short esp_col}. El número empleado siempre será
+mayor a 1. Según el documento especificativo, el valor siempre será 1. El tipo
+selecccionado tiene un rango suficiente.
+
+\end{itemize}
+
+\subsubsection*{\mintinline{cpp}{FinJuego()}}
+\addcontentsline{toc}{subsubsection}{\mintinline{cpp}{FinJuego()}}
+
+\begin{itemize}
+
+\item \mintinline{cpp}{bool mina}. Recoge la condición de uno de los posibles
+finales del juego. Esto requiere un valor booleano.
+
+\item \mintinline{cpp}{bool proc}. Recoge la condición de uno de los posibles
+finales del juego. Esto requiere un valor booleano.
+
+\item \mintinline{cpp}{bool fin}. Recoge la condición del final del juego. Esto
+requiere un valor booleano.
+
+\end{itemize}
+
+\subsubsection*{\mintinline{cpp}{MinaAbierta()}}
+\addcontentsline{toc}{subsubsection}{\mintinline{cpp}{MinaAbierta()}}
+
+\begin{itemize}
+
+\item \mintinline{cpp}{bool abierta}. Recoge la condición de encontrar una
+celda-mina abierta. Esto requiere un valor booleano.
+
+\end{itemize}
+
+\subsubsection*{\mintinline{cpp}{TodasCeldasProcesadas()}}
+\addcontentsline{toc}{subsubsection}{\mintinline{cpp}{TodasCeldasProcesadas()}}
+
+\begin{itemize}
+
+\item \mintinline{cpp}{bool procesadas}. Recoge la condición de haber procesado
+todas las celdas del tablero. Esto requiere un valor booleano.
+
+\item \mintinline{cpp}{unsigned short num_procesadas}. El número de celdas
+totales tan solo asciende a 64 de acuerdo con el documento especificativo. El
+número de celdas procesadas solo será menor o igual a 64. El rango del tipo
+seleccionado basta.
+
+\end{itemize}
+
+\subsubsection*{\mintinline{cpp}{LeeJugadoresFichero()}}
+\addcontentsline{toc}{subsubsection}{\mintinline{cpp}{LeeJugadoresFichero()}}
+
+\begin{itemize}
+
+\item \mintinline{cpp}{std::string linea}. La lógica de la función procesa cada
+línea del archivo. Para ello, se deben almacenar todos los caracteres de la
+línea. Este tipo es necesario.
+
+\end{itemize}
+
+\subsubsection*{\mintinline{cpp}{LeeInfoJugador()}}
+\addcontentsline{toc}{subsubsection}{\mintinline{cpp}{LeeInfoJugador()}}
+
+\begin{itemize}
+
+\item \mintinline{cpp}{Jugador jug}. Se deben almacenar datos del jugador de la
+última partida. De acuerdo al documento especificativo, estos datos se detallan
+en la estructura correspondiente.
+
+\end{itemize}
+
+\subsubsection*{\mintinline{cpp}{InsertaJugadorVector()}}
+\addcontentsline{toc}{subsubsection}{\mintinline{cpp}{InsertaJugadorVector()}}
+
+\begin{itemize}
+
+\item \mintinline{cpp}{bool mem}. Evalúa si el array de jugadores está lleno.
+Esto requiere un valor booleano.
+
+\end{itemize}
+
+\clearpage
+
+\section*{Implementación de los subprogramas}
+\addcontentsline{toc}{section}{Implementación de los subprogramas}
+
+\subsection*{\mintinline{cpp}{char Menu()}}
+\addcontentsline{toc}{subsection}{\mintinline{cpp}{char Menu()}}
+
+\begin{description}
+
+\item[\emph{Propósito}]
+
+Devuelve la opción elegida entre las disponibles en un menú impreso por
+pantalla. Para cada opción introducida por el usuario, se comprueba si ésta se
+encuentra en el rango de posibles opciones.
+
+El menú ofrece las siguientes opciones:
+
+\begin{itemize}
+
+\item Leer las posiciones de las minas de un archivo con un formato fijo e
+inicializar el resto del tablero.
+\item Generar semialeatoriamente las posiciones de las minas e inicializar el
+resto del tablero.
+\item Descubrir una celda de un tablero ya inicializado.
+\item Añadir una bandera a una celda específica del tablero.
+\item Desmarcar celdas de ser banderas si se han marcado como banderas.
+
+\end{itemize}
+
+\item[\emph{Parámetros}]
+
+Ninguno.
+
+\end{description}
+
+\subsection*{\mintinline{cpp}{void InicializaDesdeFichero()}}
+\addcontentsline{toc}{subsection}{%
+\mintinline{cpp}{void InicializaDesdeFichero()}}
+
+\begin{description}
+
+\item[\emph{Propósito}]
+
+A partir de un archivo de entrada previamente abierto, se lee del mismo la
+información relativa a las posiciones de las minas. Estos datos se almacenan en
+el array correspondiente al tablero. La función también inicializa todas las
+celdas sin minas a valores por defecto.
+
+El archivo debe contener posiciones válidas, y el número de minas máximo debe
+ajustarse al establecido en el documento especificativo. No se realiza ninguna
+comprobación de ello en la función.
+
+\item[\emph{Parámetros}] \leavevmode
+
+\begin{description}
+
+\item[Salida] \mintinline{cpp}{tablero}. Array con los estados de cada celda del
+tablero. Aunque no es explícito, se pasa por referencia porque es un array y
+éste es el caso en C++. Es un parámetro de salida porque solo se modifican sus
+valores, y no se obtiene ninguna información del mismo.
+
+\item[Entrada] \mintinline{cpp}{f}. Flujo del archivo con los datos a leer. El
+único modo de pasar flujos de archivo es por referencia. A pesar de ello, es un
+parámetro de entrada porque solo brinda información y no se cambia de ningún
+modo.
+
+\end{description}
+
+\end{description}
+
+\subsection*{\mintinline{cpp}{void InicializaAleatoriamente()}}
+\addcontentsline{toc}{subsection}{%
+\mintinline{cpp}{void InicializaAleatoriamente()}}
+
+\begin{description}
+
+\item[\emph{Propósito}]
+
+Inicializa los estados de cada una de las celdas del tablero con valores por
+defecto, a excepción de ciertas celdas. Las excepciones, elegidas de manera
+semideterminística, son celdas donde se colocarán minas. El número de minas a
+colocar varía en el rango 1-8, y se elige también de forma semialeatoria.
+
+La función asigna un valor semialeatorio al número de minas hasta conseguir un
+valor superior a 0. Tras ello, inicializa unas posiciones auxiliares de minas
+para marcar ciertas filas y columnas con un valor de minas. Finalmente, itera
+entre todas las celdas del tablero para modificar aquellas que coincidan con las
+mismas casillas auxiliares. Puesto que la implementación hace uso de arrays
+auxiliares diferentes para cada posición de mina, se requiere modificar los
+valores binarios de las posiciones auxiliares tras encontrar cada \emph{match}
+relativo a las posiciones reales del tablero. De otro modo, columnas completas
+se verían marcadas como minas.
+
+\item[\emph{Parámetros}] \leavevmode
+
+\begin{description}
+
+\item[Salida] \mintinline{cpp}{tablero}. Array de filas y columnas a inicializar
+con valores semideterminísticos para las posiciones con minas y por defecto para
+el resto de posiciones. Es un parámetro de salida porque solo se escriben en el
+mismo los valores a inicializar; los valores anteriores son basura o relativos a
+una inicialización previa. Se pasa por referencia ``automáticamente'' porque es
+necesario modificar los valores en memoria.
+
+\end{description}
+
+\end{description}
+
+\subsection*{\mintinline{cpp}{unsigned short NumeroMinasVecinas()}}
+\addcontentsline{toc}{subsection}{%
+\mintinline{cpp}{unsigned short NumeroMinasVecinas()}}
+
+\begin{description}
+
+\item[\emph{Propósito}]
+
+Devuelve el número de celdas vecinas con la propiedad de minas verdadera. Si el
+número de minas alrededor es 0, se devuelve también el valor 0.
+
+La función implementa una selección de rangos de celdas a explorar relativo a la
+posición de la celda inicial proveída. Esto se debe a la necesidad de evitar
+explorar índices de celdas fuera del rango alrededor de la celda inicial.
+
+\item[\emph{Parámetros}] \leavevmode
+
+\begin{description}
+
+\item[Entrada] \mintinline{cpp}{tablero}. Array con las filas, columnas y
+estados de cada una de las celdas. Se emplea solo para la lectura de la
+propiedad de mina. Es un parámetro de entrada y se pasa por valor porque no es
+necesario modificar su valor en memoria en el ámbito de la llamada.
+
+\item[Entrada] \mintinline{cpp}{fil}. Fila inicial de la exploración. Solo se
+precisa acceso de lectura relativo al valor en memoria desde la llamada para
+leer si las correspondientes celdas contienen minas. Es por tanto un parámetro
+de entrada pasado por valor.
+
+\item[Entrada] \mintinline{cpp}{col}. Columna inicial de la exploración. Solo se
+precisa acceso de lectura relativo al valor en memoria desde la llamada para
+leer si las correspondientes celdas contienen minas. Es por tanto un parámetro
+de entrada pasado por valor.
+
+\end{description}
+
+\end{description}
+
+\subsection*{\mintinline{cpp}{void MuestraTablero()}}
+\addcontentsline{toc}{subsection}{\mintinline{cpp}{void MuestraTablero()}}
+
+\begin{description}
+
+\item[\emph{Propósito}]
+
+Imprime por pantalla la situación presente del tablero de valores para el juego.
+Si está inicializado, presentará los valores adecuados, pero si no lo está,
+interpretará cualquier valor en memoria asignado a los campos de registros de
+cada uno de los elementos en el array.
+
+La función implementa la capacidad para mostrar cualquier tipo de tablero,
+independientemente de si conforma con la matriz cuadradada de 8x8 del documento
+especificativo. La implementación recorre los valores de filas y columnas,
+imprimiendo también índices para cada fila y columna procesada. En los detalles
+del proyecto no se emplea ningún tipo de índice natural, pero para esta
+implementación se hace uso de índices comenzados en 1. Esto viene con algunos
+requerimientos adicionales en otras funciones comentados al cabo del resto de la
+memoria.
+
+Al recorrer cada fila, se realiza un cómputo de espacios siempre presentes en la
+impresión de caracteres, y tras ello se cuentan los caracteres del número
+máximo de filas para añadir espacios adicionales (1 solo si se tratase de un
+número de filas con un solo caracter, 2 si se tratase de un número de filas con
+2 caracteres, etc.) Se hace uso del mismo tipo de funcionamiento para procesar
+espacios en los índices de columnas. Se tomó la decisión de abstraer el cálculo
+de caracteres en variables específicas porque este procesamiento se requiere en
+múltiples ocasiones.
+
+\item[\emph{Parámetros}] \leavevmode
+
+\begin{description}
+
+\item[Entrada] \mintinline{cpp}{tablero}. Array con las filas y columnas del
+tablero. Solo es necesario leer datos del mismo. Por tanto, no se precisa pasar
+el puntero al primer elemento, porque cualquier operación no intencionada podría
+considerarse tener acceso al puntero dereferenciado. Se pasa por valor porque es
+necesario para evitar modificar valores en memoria relativos a la región donde
+se llamó la función. Por ello, también es un parámetro de entrada.
+
+\end{description}
+
+\end{description}
+
+\subsection*{\mintinline{cpp}{void LeeCelda()}}
+\addcontentsline{toc}{subsection}{\mintinline{cpp}{void LeeCelda()}}
+
+\begin{description}
+
+\item[\emph{Propósito}]
+
+Procesa la lectura de celdas desde teclado por el usuario. Cabe mencionar la
+modificación de valores de filas y columnas de los proveídos por el usuario.
+Esto es parte de un intento por simplificar el modo de presentar los índices, de
+manera natural, e igualmente ejecutar cualquier función del programa con los
+índices correctos de los arrays del lenguaje.
+
+\item[\emph{Parámetros}] \leavevmode
+
+\begin{description}
+
+\item[Salida] \mintinline{cpp}{fil}. Número de la fila a modificar con el valor
+correspondiente. Se pasa por referencia porque una copia del puntero es
+necesaria para modificar el valor dereferenciado de la dirección. Es de salida
+porque se requiere escribir en la región de memoria correspondiente, y no es
+necesario leer los valores almacenados.
+
+\item[Salida] \mintinline{cpp}{col}. Número de la columna a modificar con el
+valor correspondiente. Se pasa por referencia porque una copia del puntero es
+necesaria para modificar el valor dereferenciado de la dirección. Es de salida
+porque se requiere escribir en la región de memoria correspondiente, y no es
+necesario leer los valores almacenados.
+
+\end{description}
+
+\end{description}
+
+\subsection*{\mintinline{cpp}{void AbreCelda()}}
+\addcontentsline{toc}{subsection}{\mintinline{cpp}{void AbreCelda()}}
+
+\begin{description}
+
+\item[\emph{Propósito}]
+
+Modifica el estado de las posiciones del tablero. Para ello, abre la celda
+pasada, y si aquellas a su alrededor cumplen tres requerimientos, las explora
+recursivamente del mismo modo. Los tres requerimientos son:
+
+\begin{itemize}
+
+\item Pasar la comprobación sobre la existencia de tal posición. Ésto se
+implementa de acuerdo al esquema organizativo mostrado en el documento
+especificativo.
+\item El número de minas vecinas es 0. La implementación mostrada en vídeo como
+muestra del proyecto no pasa esta comprobación, y por tanto revela todas las
+celdas sin minas. Se ha valorado demasiado sencillo el juego de esa manera, y
+por tanto solo se mostrarán celdas sin contacto con otras celdas-minas (aquellas
+sin indicador numérico de mina.)
+\item La celda está destapada. Ésto es necesario como marcador de aquellas
+celdas ya exploradas. Gracias a ello, la recursión no es infinita entre la
+primera celda explorada y el primer \emph{match}, dependiente de la posición de
+la misma.
+
+\end{itemize}
+
+\item[\emph{Parámetros}] \leavevmode
+
+\begin{description}
+
+\item[Entrada, salida] \mintinline{cpp}{tablero}. Array con la información sobre
+filas y columnas a modificar. La función requiere leerla, y dependiendo de las
+celdas exploradas, modificar la información de una o más celdas. Se pasa por
+referencia porque es necesario modificar los valores en memoria.
+
+\item[Entrada] \mintinline{cpp}{fil}. Número de la fila correspondiente a la
+celda a explorar. Su valor solo es necesario para tener información sobre la
+celda a destapar, y si califica, las celdas a explorar. Por tanto, se pasa por
+valor para obtener una copia del valor en memoria y proteger el valor del ámbito
+donde se ha realizado la llamada a la función.
+
+\item[Entrada] \mintinline{cpp}{col}. Número de la columna correspondiente a la
+celda a explorar. Su valor solo es necesario para tener información sobre la
+celda a destapar, y si califica, las celdas a explorar. Por tanto, se pasa por
+valor para obtener una copia del valor en memoria y proteger el valor del ámbito
+donde se ha realizado la llamada a la función.
+
+\end{description}
+
+\end{description}
+
+\subsection*{\mintinline{cpp}{bool FinJuego()}}
+\addcontentsline{toc}{subsection}{\mintinline{cpp}{bool FinJuego()}}
+
+\begin{description}
+
+\item[\emph{Propósito}]
+
+Comprueba si la partida ha finalizado a partir de los dos escenarios indicados
+en el documento especificativo. Estos escenarios consisten en encontrar una mina
+destapada o haber procesado todas las celdas del tablero. La comprobación se
+devuelve en la forma de un valor booleano. De acuerdo con las recomendaciones
+del documento especificativo, se han separado estas posibilidades; ello ha
+probado especialmente útil a la hora de implementar la lógica del final del
+juego.
+
+\item[\emph{Parámetros}] \leavevmode
+
+\begin{description}
+
+\item[Entrada] \mintinline{cpp}{tablero}. Array con las filas y columnas a leer,
+para verificar alguna de las condiciones del final del juego. Solo se espera
+leer los estados de cada celda del tablero. Por tanto, únicamente se precisa una
+copia del valor.
+
+\end{description}
+
+\end{description}
+
+\subsection*{\mintinline{cpp}{bool MinaAbierta()}}
+\addcontentsline{toc}{subsection}{\mintinline{cpp}{bool MinaAbierta()}}
+
+\begin{description}
+
+\item[\emph{Propósito}]
+
+Comprueba si alguna de las celdas del tablero conteniendo una mina ha sido
+destapada. Ésto es uno de los posibles escenarios para determinar el final del
+juego. Devolverá un valor booleano dependiendo de si se ha encontrado una mina
+abierta.
+
+\item[\emph{Parámetros}] \leavevmode
+
+\begin{description}
+
+\item[Entrada] \mintinline{cpp}{tablero}. Array con las filas y columnas a leer,
+para verificar la condición. Solo se espera leer los estados de cada celda del
+tablero. Por tanto, únicamente se precisa de un valor de copia del array.
+
+\end{description}
+
+\end{description}
+
+\subsection*{\mintinline{cpp}{bool TodasCeldasProcesadas()}}
+\addcontentsline{toc}{subsection}{%
+\mintinline{cpp}{bool TodasCeldasProcesadas()}}
+
+\begin{description}
+
+\item[\emph{Propósito}]
+
+Comprueba si todas las celdas del tablero han sido procesadas. Para la
+implementación de esta condición de victoria, a falta de una definición formal
+para el proyecto, se ha decidido comprobar si todas las celdas sin minas han
+sido destapadas, y si todas las celdas con minas tienen una bandera. La primera
+condición es exclusiva de las celdas sin minas, pero la lógica del programa ya
+implementa una comprobación de minas previa. Por tanto, se considera innecesaria
+la comprobación de minas en dicha ocasión. Devuelve un valor booleano
+dependiente de la equivalencia entre las celdas procesadas y las celdas totales
+del tablero (64 de acuerdo al documento especificativo.)
+
+\item[\emph{Parámetros}] \leavevmode
+
+\begin{description}
+
+\item[Entrada] \mintinline{cpp}{tablero}. Array con las filas y columnas a
+considerar al cabo del recorrido por el tablero. Solo requiere leer los estados
+de las celdas. Por ese motivo es de entrada y se pasa la referencia como
+constante, para evitar modificaciones al valor en memoria al que se apunta.
+
+\end{description}
+
+\end{description}
+
+\subsection*{\mintinline{cpp}{void LeeJugadoresFichero()}}
+\addcontentsline{toc}{subsection}{\mintinline{cpp}{void LeeJugadoresFichero()}}
+
+\begin{description}
+
+\item[\emph{Propósito}]
+
+Lee desde el archivo los datos de múltiples jugadores, y los almacena en un
+array de jugadores. Esta función forma parte del final del juego, y emplea
+también una variable para determinar el número de espacios ocupados por los
+jugadores almacenados. Ésto es necesario debido al uso de arrays de tamaño
+``fijo'' en C++.
+
+Como el resto de funciones operando en archivos, el archivo debe estar abierto
+de antemano, y ya se debe haber comprobado sus \mintinline{cpp}{badbit},
+\mintinline{cpp}{eofbit} y \mintinline{cpp}{failbit}.
+
+La implementación recoge cada línea del archivo, y aprovecha el formato estándar
+proveído para los dos ejemplos de jugadores. Los nombres corresponden con las
+líneas conteniendo un caracter alfabético. La fecha de nacimiento corresponderá
+a la línea con espacios para separar días, y cualquier otro caso solo puede
+tratarse de las jugadas.
+
+\item[\emph{Parámetros}] \leavevmode
+
+\begin{description}
+
+\item[Salida] \mintinline{cpp}{jugadores}. Array de jugadores con los datos
+leídos relativos a cada jugador. Esta información solo se escribirá en el array;
+cualquier otro valor almacenado en el mismo previamente es basura. Por este
+motivo, es un parámetro exclusivamente de salida y se pasa por referencia al
+valor de la dirección en memoria.
+
+\item[Salida] \mintinline{cpp}{tam}. Tamaño del array rellenado con los
+jugadores en fichero. Este ya se asume inicializado previo a la llamada. Por
+ello, el puntero copiado directamente será modificado con operaciones sobre sí
+mismo.
+
+\item[Entrada] \mintinline{cpp}{f}. Archivo con los datos de los jugadores a
+leer. Es necesario pasarlo por referencia porque se trata de un flujo de
+archivo, a pesar de únicamente emplear su información y no modificarlo de ningún
+modo. Solo se lee información del mismo, con lo que es un parámetro de entrada.
+
+\end{description}
+
+\end{description}
+
+\subsection*{\mintinline{cpp}{Jugador LeeInfoJugador()}}
+\addcontentsline{toc}{subsection}{\mintinline{cpp}{Jugador LeeInfoJugador()}}
+
+\begin{description}
+
+\item[\emph{Propósito}]
+
+Recoge información sobre un jugador por teclado, y la almacena en una estructura
+de jugador. Ésta conforma también el valor de retorno de la función. Los datos
+son relativos a la partida jugada. Por este motivo, funciona como un guardado de
+partida y no sirve para modificar registros existentes.
+
+\item[\emph{Parámetros}] \leavevmode
+
+\begin{description}
+
+\item[Entrada] \mintinline{cpp}{intentos}. Los intentos a registrar realizados
+durante la partida. Se pasa como parámetro de entrada y por valor porque solo se
+espera leer su valor en memoria. Refiere al evento de descubrir una celda.
+
+\end{description}
+
+\end{description}
+
+\subsection*{\mintinline{cpp}{bool InsertaJugadorVector()}}
+\addcontentsline{toc}{subsection}{\mintinline{cpp}{bool InsertaJugadorVector()}}
+
+\begin{description}
+
+\item[\emph{Propósito}]
+
+Inserta un jugador en memoria para añadir los datos de la última partida a los
+datos existentes. No es posible añadir valores de jugadores ya existentes, y
+tampoco se pueden modificar valores registrados de los archivos; la
+implementación siempre añadirá un nuevo registro de jugador. La función también
+comprueba si el array de jugadores está lleno y la devuelve como valor de
+retorno. Ésto se debe al limitado rango de 100 jugadores dado por la
+correspondiente constante.
+
+\item[\emph{Parámetros}] \leavevmode
+
+\begin{description}
+
+\item[Entrada] \mintinline{cpp}{jug}. Estructura con los datos del jugador a
+insertar. Se espera solo leer los datos de la estructura; por ello, se pasa una
+copia del valor en memoria, y es de entrada.
+
+\item[Salida] \mintinline{cpp}{jugadores}. Array con la información de todos los
+jugadores, incluidos aquellos en el archivo leído en otra parte del programa. Es
+necesario escribir un nuevo elemento; por ello, se requiere acceso al valor en
+memoria donde se realizó la llamada, y se pasa por referencia. Asimismo, es un
+parámetro de salida porque solo se requiere escribir en el mismo.
+
+\item[Entrada, salida] \mintinline{cpp}{tam}. La cantidad de elementos no-basura
+del array de jugadores, determinado previamente con un archivo con jugadores, y
+presentemente al añadir un jugador. Su valor se utiliza tanto para añadir el
+jugador al final del array, como para incrementar su tamaño tras realizar esta
+operación. El valor en memoria de la llamada se desea modificar para propósitos
+finales sobre el array de jugadores. Por este motivo, se pasa por referencia el
+puntero a la dirección del valor en el ámbito de la llamada.
+
+\end{description}
+
+\end{description}
+
+\subsection*{\mintinline{cpp}{void EscribeJugadoresFichero()}}
+\addcontentsline{toc}{subsection}{%
+\mintinline{cpp}{void EscribeJugadoresFichero()}}
+
+\begin{description}
+
+\item[\emph{Propósito}]
+
+Escribe datos de un array de jugadores en un archivo de salida. Puede ser
+cualquier archivo; incluyendo el archivo con jugadores ya existentes, o uno
+nuevo.
+
+\item[\emph{Parámetros}] \leavevmode
+
+\begin{description}
+
+\item[Entrada] \mintinline{cpp}{jugadores}. Array de jugadores con múltiples
+registros. Solo se deben escribir los datos del array en el archivo de salida.
+Por esta razón, solo es necesario pasar una copia por valor. Esto también
+provoca el tratamiento como parámetro de entrada; no se escribirán valores, solo
+se leerán.
+
+\item[Entrada] \mintinline{cpp}{tam}. Espacios ocupados en el array; para evitar
+asignar valores basura de posiciones sin valores inicializados, es necesario
+recorrer el array solo hasta la posición debida. Por ello, no se precisa
+modificar el valor en memoria en el ámbito de la llamada, y se pasa por valor;
+ello también lo hace un parámetro de entrada.
+
+\item[Salida] \mintinline{cpp}{f}. Archivo de salida donde escribir los datos
+del array de jugadores. Se pasa por referencia porque ésto es necesario con
+flujos de archivo en C++, y es un parámetro de salida porque solo se escribe en
+el mismo.
+
+\end{description}
+
+\end{description}
+
+\clearpage
+
+\section*{Diagrama de flujo de la función \mintinline{cpp}{main()}}
+\addcontentsline{toc}{section}{Diagrama de flujo de la función
+\mintinline{cpp}{main()}}
+
+\begin{center}
+
+\begin{tikzpicture}
+
+\node [terminator] at (0,0) (start) {\textbf{Inicio}};
+\node [process] at (0,-1) (size) {\emph{tam} $\gets$ 0};
+\node [process] at (0,-2) (attempts) {\emph{intentos} $\gets$ 0};
+\node [junction] at (0,-3) (junct1) {};
+\node [process] at (0,-4) (option) {\emph{opción} $\gets$ Opción de menu};
+\node [decision] at (0,-6) (switch) {\textbf{¿\emph{opción}?}};
+\node [junction] at (-6.5,-8) (junct2) {};
+\node [data] at (0,-8) (a1) {Leer \emph{archivo minas}};
+\node [process] at (0,-9) (a2) {Inicializar tablero desde \emph{archivo
+minas}};
+\node [junction] at (-6.5,-10) (junct4) {};
+\node [process] at (0,-10) (b) {Inicializar tablero aleatoriamente};
+\node [junction] at (-6.5,-11) (junct5) {};
+\node [data] at (0,-11) (c1) {Leer \emph{celda}};
+\node [decision] at (0,-14) (c2) {\textbf{¿\emph{celda} destapada?}};
+\node [process] at (-4,-14) (c3) {Abrir \emph{celda}};
+\node [process] at (-4,-13) (c4) {\emph{intentos} $\gets$ \emph{intentos} + 1};
+\node [junction] at (-6.5,-17) (junct6) {};
+\node [data] at (0,-17) (d1) {Leer \emph{celda}};
+\node [process] at (0,-18) (d2) {Marcar \emph{celda}};
+\node [data] at (0,-19) (e1) {Leer \emph{celda}};
+\node [decision] at (8,-17.5) (e2) {\textbf{¿\emph{celda} marcada?}};
+\node [process] at (3,-16) (e3) {Desmarcar \emph{celda}};
+\node [junction] at (8,-14.5) (junct3) {};
+\node [junction] at (8,-9) (junct7) {};
+\node [junction] at (8,-13.5) (junct8) {};
+\node [junction] at (3,-11.5) (junct9) {};
+\node [junction] at (8,-11.5) (junct10) {};
+\node [junction] at (8,-10) (junct11) {};
+\node [process] at (8,-8) (show) {Mostrar tablero};
+\node [decision] at (8,-5.5) (fin) {\textbf{¿Fin juego?}};
+
+\path [connector] (start) -- (size);
+\path [connector] (size) -- (attempts);
+\path [connector] (attempts) -- (junct1);
+\path [connector] (junct1) -- (option);
+\path [connector] (option) -- (switch);
+\path [connector] (switch) -| (junct2);
+\path [connector] (junct2) -- node[anchor=south] {`a'} (a1);
+\path [connector] (junct2) -- (junct4);
+\path [connector] (junct4) -- node[anchor=south] {`b'} (b);
+\path [connector] (junct4) -- (junct5);
+\path [connector] (junct5) -- node[anchor=south] {`c'} (c1);
+\path [connector] (junct5) -- (junct6);
+\path [connector] (junct6) -- node[anchor=south] {`d'} (d1);
+\path [connector] (junct6) -- (-6.5,-19) -- node[anchor=south] {`e'} (e1);
+\path [connector] (a1) -- (a2);
+\path [connector] (a2) -- (junct7);
+\path [connector] (b) -- (junct11);
+\path [connector] (c1) -- (c2);
+\path [connector] (c2) -- node[anchor=north] {V} (3,-14) -- (junct9);
+\path [connector] (c2) -- node[anchor=north] {F} (c3);
+\path [connector] (c3) -- (c4);
+\path [connector] (c4) |- (junct9);
+\path [connector] (junct9) -- (junct10);
+\path [connector] (d1) -- (d2);
+\path [connector] (d2) -| (5.5,-13.5) -- (junct8);
+\path [connector] (e1) |- (3,-20) -| (e2);
+\path [connector] (e2) -- node[anchor=south] {V} (3,-17.5) -- (e3);
+\path [connector] (e2) -- node[anchor=east] {F} (junct3);
+\path [connector] (e3) |- (junct3);
+\path [connector] (junct3) -- (junct8);
+\path [connector] (junct8) -- (junct10);
+\path [connector] (junct10) -- (junct11);
+\path [connector] (junct11) -- (junct7);
+\path [connector] (junct7) -- (show);
+\path [connector] (show) -- (fin);
+\path [connector] (fin) -- node[anchor=north] {V\footnotemark} (5,-5.5);
+\path [connector] (fin) -- node[anchor=east] {F} (8,-3) -- (junct1);
+
+\end{tikzpicture}
+
+\footnotetext{Continuado en siguiente página.}
+
+\newpage
+
+\begin{tikzpicture}
+
+\node [decision] at (0,-2.5) (mine1) {\textbf{¿Mina abierta?}};
+\node [data] at (-4.5,-2.5) (mine2) {Escribir `Derrota'};
+\node [data] at (4.5,-2.5) (mine3) {Escribir `Victoria'};
+\node [junction] at (0,-5) (junct1) {};
+\node [data] at (0,-6) (attempts) {Escribir \emph{intentos}};
+\node [decision] at (0,-9) (proc1) {\textbf{¿Celdas procesadas?}};
+\node [data] at (6,-9) (proc2) {Leer \emph{archivo jugadores}};
+\node [process] at (6,-10) (proc3) {Procesar jugadores en \emph{archivo
+jugadores}};
+\node [data] at (6,-11) (proc4) {Leer \emph{info jugador}};
+\node [process] at (6,-12) (proc5) {\emph{jug} $\gets$ \emph{info jugador}};
+\node [decision] at (6,-15.5) (proc6) {\textbf{¿Memoria suficiente?}};
+\node [process] at (0,-15.5) (proc7) {Añadir \emph{jug} a jugadores};
+\node [data] at (6,-19) (proc8) {Escribir `Memoria insuficiente'};
+\node [junction] at (0,-20) (junct2) {};
+\node [data] at (0,-21) (proc9) {Leer \emph{archivo de guardado}};
+\node [process] at (0,-22) (proc10) {Añadir jugadores a \emph{archivo de
+guardado}};
+\node [terminator] at (0,-23) (fin) {\textbf{Fin}};
+
+\path [connector] (0,0) -- (mine1);
+\path [connector] (mine1) -- node[anchor=north] {V} (mine2);
+\path [connector] (mine1) -- node[anchor=north] {F} (mine3);
+\path [connector] (mine2) |- (junct1);
+\path [connector] (mine3) |- (junct1);
+\path [connector] (junct1) -- (attempts);
+\path [connector] (attempts) -- (proc1);
+\path [connector] (proc1) -- node[anchor=north] {F} (-4,-9) |- (-4,-23) --
+(fin);
+\path [connector] (proc1) -- node[anchor=north] {V} (proc2);
+\path [connector] (proc2) -- (proc3);
+\path [connector] (proc3) -- (proc4);
+\path [connector] (proc4) -- (proc5);
+\path [connector] (proc5) -- (proc6);
+\path [connector] (proc6) -- node[anchor=north] {V} (proc7);
+\path [connector] (proc6) -- node[anchor=east] {F} (proc8);
+\path [connector] (proc7) -- (junct2);
+\path [connector] (proc8) |- (junct2);
+\path [connector] (junct2) -- (proc9);
+\path [connector] (proc9) -- (proc10);
+\path [connector] (proc10) -- (fin);
+
+\end{tikzpicture}
+
+\end{center}
+
+\end{document}
