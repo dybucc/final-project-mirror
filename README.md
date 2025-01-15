@@ -89,6 +89,10 @@ tipos.
 
 ## Changelog
 
+### 0.3.5
+
+- refactor(juego): elimina inicializacion variable
+
 ### 0.3.4
 
 - fix(juego): corrige exploracion de celdas vecinas
