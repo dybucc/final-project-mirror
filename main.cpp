@@ -194,8 +194,6 @@ int main(void)
 
             f_out.close();
         }
-
-        system(limpiar.c_str());
     }
 
     return 0;
