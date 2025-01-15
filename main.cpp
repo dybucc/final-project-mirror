@@ -1056,10 +1056,29 @@ Jugador LeeInfoJugador(unsigned short intentos)
     return jug;
 }
 
+/**
+ *
+ * Inserta los datos de un jugador en un array de jugadores. Comprueba si el
+ * array esta lleno previo a la realizacion de alguna operacion.
+ *
+ * @param [in] jug Estructura con los datos del nuevo jugador.
+ * @param [out] jugadores Array de jugadores con registros de otros jugadores.
+ * @param [in, out] tam Cantidad de espacios rellenados del array.
+ *
+ * @retval true El array de jugadores no esta lleno.
+ * @retval false El array de jugadores esta lleno.
+ *
+ */
 bool InsertaJugadorVector(Jugador jug, VectorJ jugadores, unsigned short & tam)
 {
-    bool mem = false;
+    bool mem = false;    // Condicion de que el array este lleno.
 
+    /*
+     *
+     * Logica principal; si el array no esta lleno, modificar la condicion,
+     * rellenar el registro del array y aumentar su tamano.
+     *
+     */
     if (tam < MAX_JUGADORES)
     {
         mem = true;
