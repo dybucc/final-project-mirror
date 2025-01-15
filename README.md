@@ -89,6 +89,10 @@ tipos.
 
 ## Changelog
 
+### 0.3.10
+
+- refactor(fin): modifica lectura nombre jugador
+
 ### 0.3.9
 
 - fix(fin): corrige lectura de datos desde archivo
