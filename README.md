@@ -89,6 +89,10 @@ tipos.
 
 ## Changelog
 
+### 0.3.12
+
+- refactor(fin): modifica escritura de jugadores
+
 ### 0.3.11
 
 - refactor(fin): elimina bucle innecesario
