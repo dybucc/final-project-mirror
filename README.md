@@ -89,6 +89,10 @@ tipos.
 
 ## Changelog
 
+### 0.3.15
+
+- refactor(juego): aclara parametros de funcion menu
+
 ### 0.3.14
 
 - refactor(fin): cambia tipo de tamano de intentos
